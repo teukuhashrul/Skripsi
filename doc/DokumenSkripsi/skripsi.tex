@@ -68,10 +68,15 @@
 \usepackage{xstring}%manipulasi string, strchar, ifstreq
 \usepackage[table]{xcolor}%untuk kode program
 \usepackage{pgffor}% untuk foreach
- 
+\usepackage{amsmath} % untuk label equation 
+% untuk supaya paragraf dapat dicustom sebagai mempunyai nomor bab dibawah subsection
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+
+
 \newcommand{\vtemplateauthor}{lionov}
 \newcommand{\dtext}[1]{{\color{lightgray} \lipsum[#1]}}%command untuk dummy text
-\newcommand{\rtext}[1]{{\color{red} \small #1}}%command untuk default text
+\newcommand{\rtext}[1]{{ \small #1}}%command untuk default text
 
 \newcommand{\vmode}{template}  % default mode
 \newtoggle{cekNPM}	 
@@ -85,7 +90,7 @@
 \newcommand{\vtext}[3]{\IfStrEq{\vmode}{template}{\newcommand{#1}{\rtext{#2}#3}}{\newcommand{#1}{#2}}}
 \newcommand{\vtextup}[3]{\IfStrEq{\vmode}{template}{\newcommand{#1}{\uppercase{\rtext{#2}}#3}}{\newcommand{#1}{\uppercase{#2}}}}
 
-%default data prodi
+%defa	ult data prodi
 \newcommand{\vprodiINA}{\rtext{<<MATEMATIKA/FISIKA/TEKNIK INFORMATIKA>>}}
 \newcommand{\vprodiENG}{\rtext{<<MATHEMATICS/PHYSICS/INFORMATICS>>}}
 \newcommand{\vstaINA}{\rtext{<<SKRIPSI/TUGAS AKHIR>>}} 
@@ -258,7 +263,7 @@
 		\uppercase{\vnama}\\\vspace{0.5cm}
 		NPM: \vnpm\\
 		\vfill
-		PROGRAM STUDI \vprodiINA\\
+		PROGRAM STUDI TEKNIK INFORMATIKA\\
 		FAKULTAS TEKNOLOGI INFORMASI DAN SAINS\\
 		UNIVERSITAS KATOLIK PARAHYANGAN\\
 		\vtahun 

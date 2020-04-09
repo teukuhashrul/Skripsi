@@ -3,7 +3,13 @@
 \usepackage[bahasa]{babel}
 \usepackage{graphicx}
 \usepackage{graphics}
+% for cell colored table 
+\usepackage[table]{xcolor}
+% title sec for nested paragraph
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
 \usepackage{float}
+\usepackage{amsmath}
 \usepackage[cm]{fullpage}
 \pagestyle{myheadings}
 \usepackage{etoolbox}
@@ -16,9 +22,15 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{Laporan Perkembangan Pengerjaan Skripsi\textemdash Sem. Genap 2015/2016}}}
+\markright{\textbf{\textsc{Laporan Perkembangan Pengerjaan Skripsi\textemdash Sem. Ganjil 2019/2020}}}
 
 \onehalfspacing
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
  
 \begin{document}
 
@@ -26,15 +38,15 @@
 \author{\nama \textendash \@npm} 
 
 %ISILAH DATA BERIKUT INI:
-\newcommand{\nama}{Lionov}
-\newcommand{\@npm}{1997730020}
-\newcommand{\tanggal}{01/01/1900} %Tanggal pembuatan dokumen
-\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
-\newcommand{\kodetopik}{TAB0901}
+\newcommand{\nama}{Teuku Hashrul}
+\newcommand{\@npm}{2016730067}
+\newcommand{\tanggal}{25/11/2019} %Tanggal pembuatan dokumen
+\newcommand{\@judultopik}{ANALISIS KESUKSESAN FILM DENGAN DATA MINING} % Judul/topik anda
+\newcommand{\kodetopik}{KDH4701}
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-\newcommand{\pembA}{Thomas Anung Basuki}
+\newcommand{\pembA}{Kristopher David Harjono}
 \newcommand{\pembB}{-}
-\newcommand{\semesterPertama}{40 - Genap 15/16} % semester pertama kali topik diambil, angka 1 dimulai dari sem Ganjil 96/97
+\newcommand{\semesterPertama}{7 - Ganjil 19/20} % semester pertama kali topik diambil, angka 1 dimulai dari sem Ganjil 96/97
 \newcommand{\lamaSkripsi}{1} % Jumlah semester untuk mengerjakan skripsi s.d. dokumen ini dibuat
 \newcommand{\kulPertama}{Skripsi 1} % Kuliah dimana topik ini diambil pertama kali
 \newcommand{\tipePR}{B} % tipe progress report :
@@ -66,62 +78,1269 @@ Tipe Laporan : {\bf \tipePR} -
 		
 \section{Latar Belakang}
 
-\section{Tujuan}
+Film merupakan media komunikasi yang bersifat audio visual untuk menyampaikan suatu pesan kepada penontonnya. Keberadaan film membuat masyarakat menjadikan film sebagai media hiburan. Beragam cara dapat dilakukan untuk menikmati sebuah film, yaitu datang ke bioskop, membeli kaset DVD dan \textit{streaming} menggunakan aplikasi \textit{desktop} dan \textit{smartphone}.
+
+Film yang dibuat ada karena ada kumpulan orang dibalik layar yang bekerja untuk membuatnya. Terdapat beragam perusahaan produksi film yang berlomba-lomba untuk membuat film yang dapat memperoleh keuntungan maksimum. Dengan menciptakan film yang sesuai dengan keinginan penontonnya,maka peluang keuntungan yang diperoleh pun akan semakin meningkat dan dapat menutup\textit{budget} yang digunakan sebelumnya untuk biaya produksi.
+	
+Berdasarkan penelitian analisis data film yang ada sebelumnya pada \textit{kaggle}, data film memiliki beberapa atribut umum yaitu judul,\textit{genre}, \textit{rating}, keuntungan,\textit{ budget}, nilai \textit{review} dari situs internet, aktor yang terlibat dan lama tayang. Data film yang ada digunakan untuk membantu menganalisis sifat dari film. Penelitian yang dilakukan adalah analisis prediksi nilai IMDB \textit{score}, yaitu situs yang berisi data film. 	
+	
+
+\textit{Genre} adalah sebutan untuk membedakan berbagai jenis film. Sebuah film memiliki satu atau beragam \textit{genre}. Terdapat banyak film yang menggunakan kombinasi dari beberapa \textit{genre}.  \textit{Genre} yang ada berupa \textit{action, adventure, animation ,drama ,comedy ,horror ,romance} dan lain-lain. 
+
+Terdapat banyak kemungkinan faktor yang dapat dijadikan sebuah film dapat memperoleh keuntungan maksimum. Faktor kesuksesan film berupa faktor \textit{rating} dari situs \textit{review} film, nama aktor yang terlibat, nama sutradara yang terlibat dan jumlah \textit{budget} yang dikeluarkan. Salah satu faktor dan kombinasi beberapa faktor dapat memengaruhi kesuksesan film.
+	
+Berdasarkan uraian diatas,akan dilakukan sebuah penelitian mengenai data film. Penelitian ini adalah analisis kesuksesan film dengan \textit{data mining} untuk memperoleh faktor-faktor yang ada dapat memprediksi  kesuksesan sebuah film. Dari faktor yang diperoleh, maka akan diprediksi \textit{revenue}/pendapatan sebuah film berdasarkan data film yang sudah ada sebelumnya. 
+	
+Pada penelitian ini dibuat sekumpulan perangkat lunak yang digunakan untuk mengumpulkan, membersihkan data, analisis ,pembuatan model, evaluasi kerja model dan visualisasi data.Perangkat lunak yang dibuat akan membantu menganalisis data film yang digunakan. Pembuatan perangkat lunak akan menggunakan bahasa pemrograman \textit{Python} dan memanfaatkan beberapa \textit{library} dari \textit{Python}.\textit{Pandas} digunakan untuk integrasi data. \textit{Sci-kit learn} digunakan untuk implementasi regresi, teknik \textit{clustering} dan \textit{classification} untuk memprediksi keuntungan sebuah film. Penelitian ini akan melakukan eksperimen untuk membandingkan beberapa metode \textit{machine learning} dalam memprediksi kesuksesan sebuah film.
+
 
 \section{Rumusan Masalah}
+Berkaitan dengan identifikasi masalah yang ada pada deskripsi diatas, masalah-masalah yang ada dapat dirumuskan sebagai berikut. 
+
+\begin{itemize}
+\item Apa saja faktor yang dapat digunakan untuk menentukan kesuksesan sebuah film ?
+\item Bagaimana langkah dalam melakukan analisis kesuksesan film dengan \textit{data mining} ? 
+\item Bagaimana hasil pengujian pada penelitian ini ?
+\end{itemize}
+
+
+
+
+
+\section{Tujuan}
+Tujuan yang ingin dicapai dari penelitian ini adalah:  
+
+\begin{itemize}
+\item Mengeksplorasi data yang dikumpulkan
+\item Membuat perangkat lunak yang dapat menggunakan metode \textit{data mining} untuk melakukan analisis faktor-faktor yang dapat berpengaruh pada kesuksesan film
+\item Menguji metode-metode yang digunakan pada penelitian ini
+\end{itemize} 
+
 
 \section{Detail Perkembangan Pengerjaan Skripsi}
-Detail bagian pekerjaan skripsi sesuai dengan rencan kerja/laporan perkembangan terkahir :
+Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan terakhir :
 	\begin{enumerate}
-		\item \textbf{Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll).}\\
+%		RKS POIN STUDI LITERATUR JURNAL 
+		\item \textbf{Melakukan studi literatur dengan mencari jurnal, \textit{paper} mengenai penelitian sejenis dari berbagai sumber untuk membantu penulis dalam menulis.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} Survei sudah dilakukan sebanyak 3x pada tanggal X, Y dan Z. Pada kunjungan pertama, diperhaitkan denah museum dan dibuat sketsa berdasarkan pengamatan. Pada kunjunga kedua, bertemu dengan bagian humas museum dan berhasil mendapatkan denah serta melakukan wawancara. Hasil wawancara sudah dibuat dan ada softcopy-nya. Pada kunjungan ketiga, secara khusus dilihat perilaku pengunjung. Masih direncakanan 2x kunjungan lagi. Bukti-bukti kunjungan dapat dilihat di lampiran
+		{\bf Hasil : } 
 		
-		\item \textbf{Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+Sebagai referensi utama dalam penelitian, penulis mempelajari \textit{data mining} dari artikel situs \textit{kaggle} yang berjudul \textit{"Analyze IMDB score with data mining algorithms"}. Artikel ini membahas penerapan \textit{data mining} pada data film  untuk dibandingkan 3 metode \textit{classification}	dan performanya. Bahasa pemrograman yang digunakan untuk eksperimen adalah R.
 
-		\item \textbf{Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+Di dalam artikel tersebut, terdapat langkah-langkah \textit{data mining} yang diterapkan. Penelitian dimulai dengan \textit{Data Exploration} untuk memahami data. \textit{Data cleaning} untuk membersihkan data agar dapat digunakan saat \textit{Data mining}. \textit{Data visualization} untuk memvisualisasikan data sehingga mempermudah dalam melihat korelasi dan hubungan tiap data. \textit{Data preprocessing} untuk mengubah data sesuai kebutuhan. \textit{Implement algorithm} untuk memasukkan data yang sudah diproses ke algoritma yang relevan yaitu \textit{classification}. \textit{Classification} merupakan salah satu algoritma \textit{supervised machine learning} yang digunakan untuk memrediksi nilai sebuah kelas.
 
-		\item \textbf{Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+\textit{Dataset} yang digunakan pada artikel \textit{kaggle} memiliki 5043 data film dengan 28 variabel. Data film berasal dari 100 negara. \textit{Dataset} memiliki 2399 nama sutradara. Nama-nama variabel beserta deskripsinya adalah sebagai berikut :
 
-		\item \textbf{Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+\begin{itemize}
+\item 	\textbf{movie \textunderscore title} : judul film
+\item   \textbf{duration}	 : durasi film
+\item	\textbf{director \textunderscore name}: nama sutradara 
+\item	\textbf{director \textunderscore facebook \textunderscore likes} : jumlah \textit{likes} pada \textit{facebook page} sutradara
+\item	\textbf{actor \textunderscore 1 \textunderscore name} : nama pemeran utama 
+\item	\textbf{actor \textunderscore 1 \textunderscore facebook \textunderscore likes} : jumlah \textit{likes} pada \textit{facebook page} artis 
 
-		\item \textbf{Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)}\\
-		{\bf Status :} dihapuskan/tidak dikerjakan \\
-		{\bf Hasil :} berdasarkan analisis singkat, tidak dilakukan analisis lebih jauh karena tidak diperlukan struktur data baru, karena sudah disediakan oleh OpenSteer versi terbaru
+\item	\textbf{actor \textunderscore 2 \textunderscore name} : nama pemeran pendukung pertama 
+\item	\textbf{actor \textunderscore 2 \textunderscore facebook \textunderscore likes} : jumlah \textit{likes} pada \textit{facebook page} artis 
 
-		\item \textbf{Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer} \\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+\item	\textbf{actor \textunderscore 3 \textunderscore name} : nama pemeran pendukung kedua  
+\item	\textbf{actor \textunderscore 3 \textunderscore facebook \textunderscore likes} : jumlah \textit{likes} pada \textit{facebook page} artis 
 
-		\item \textbf{Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
 
-		\item \textbf{Menulis dokumen skripsi}\\
-		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} \lipsum[1]
+\item \textbf{num\textunderscore user\textunderscore for\textunderscore reviews} : jumlah \textit{user} yang memberikan \textit{review}
+\item \textbf{num\textunderscore critic\textunderscore for\textunderscore reviews} : jumlah \textit{user} yang memberikan \textit{critical review}
+\item \textbf{num\textunderscore voted\textunderscore user} : jumlah \textit{user} yang mendukung film
+\item \textbf{cast\textunderscore total\textunderscore facebook\textunderscore likes} : jumlah \textit{like} dari setiap pemeran film di \textit{facebook}
+
+\item \textbf{movie\textunderscore facebook\textunderscore likes} : jumlah \textit{likes} film di \textit{facebook}
+\item \textbf{plot\textunderscore keywords} : kata kunci yang mendeskripsikan film 
+\item \textbf{facenumber\textunderscore in\textunderscore poster} : jumlah wajah pemain di poster film 
+\item \textbf{color} : jenis warna film ('Black and white' atau 'Color')
+\item \textbf{genres}  : kategori film 
+\item \textbf{title\textunderscore year} : tahun rilis film (dari tahun 1916 sampai 2016)
+
+\item \textbf{language} : bahasa film 
+\item \textbf{country} : negara asal film 
+\item \textbf{content\textunderscore rating} : \textit{nilai} konten dalam film 
+\item \textbf{aspect\textunderscore ratio} : perbandingan panjang dan lebar layar resolusi film 
+\item \textbf{movie\textunderscore imdb\textunderscore link} : tautan film pada imdb 
+\item \textbf{gross} : pendapatan kotor 
+\item \textbf{budget} : biaya produksi film 
+\item \textbf{imdb\textunderscore score} : nilai film yang diberikan oleh imdb 
+\end{itemize}
+
+Pada tahap eksplorasi data, beberapa hal dilakukan untuk melakukan \textit{data cleaning} seperti menghilangkan film yang memiliki \textit{missing value}, menghilangkan film yang duplikat, melakukan normalisasi pada judul film. Tahap  eksplorasi dilakukan untuk memahami data dan mengubah data ke bentuk yang lebih relevan untuk tahap pengujian model
+
+Pada tahap visualisasi data, terdapat beberapa teknik yang dilakukan untuk membantu menganalisis data menggunakan grafik seperti memunculkan histogram jumlah film setiap tahun dari 1916 sampai 2016. Pengurutan data dilakukan untuk memunculkan informasi-informasi yang dibutuhkan seperti 20 besar film 
+berdasarkan keuntungan dan 20 besar nama sutradara yang menghasilkan film dengan nilai IMDB tertinggi
+
+Eksperimen yang dilakukan diartikel akan memproses \textit{dataset} yang sudah dibersihkan untuk dimasukkan ke beberapa algoritma \textit{classification} yaitu \textit{Decision Tree}, \textit{K-nearest neighbors} dan \textit{Random Forest}. Berdasarkan hasil pengujian ternyata \textit{Random Forest} memiliki akurasi yang paling tinggi dibanding algoritma lain yaitu 0,76 atau 76 persen. Sehingga, \textit{model} yang dibuat dapat dipercaya untuk memprediksi seberapa bagus film berdasarkan skor IMDB.		
+		 
+% 		RKS MEMPELAJARI ILMU STATISTIKA DASAR 
+\item \textbf{	 Melakukan studi literatur mengenai ilmu statistika dasar khususnya dalam memahami persebaran data}\\
+		{\bf Status :} ditambah semenjak skripsi 1\\
+		{\bf Hasil : }
 		
-		\item \textbf{Mempelajari cara menggunakan fitur manipulasi obstacle yang disediakan oleh framework Opensteer versi terbaru}\\
-		{\bf Status :} baru ditambahkan pada semester ini\\
-		{\bf Hasil :} baru direncanakan karena framework Opensteer versi paling akhir baru selesai diinstall dan dilihat-lihat bagian contoh-contoh simulasinya
+\subsection{Measuring the Central Tendency}
+\textit{Central Tendency} adalah cara untuk mengukur persebaran tiap nilai pada kumpulan data. Kumpulan data yang besar sulit untuk dibaca sehingga membutuhkan suatu cara untuk memahaminya.  \textit{Central Tendency} dapat menghitung sebuah nilai yang dapat merepresentasikan kumpulan data. Terdapat beberapa cara untuk mengukur persebaran data yaitu menggunakan \textit{mean} / rata-rata, median (Q2) dan modus.  
+
+\subsubsection{Mean}
+
+\textit{Mean} / rata-rata adalah bilangan yang mewakili sekumpulan data. Rata-rata dapat dihitung dengan menjumlahkan setiap data dibagi dengan jumlah elemen pada data tersebut. Sebuah kumpulan data X dengan elemen x1,x2....xn memiliki N elemen. Berikut adalah rumus \textit{mean} yaitu : 
+
+\begin{equation}
+\bar{x} = \frac{\sum_{i}^{N}x_i}{N} = \frac{x1+x2+....+x_N}{N} \
+\label{ref:mean}
+\end{equation}
+
+X pada persamaan \ref{ref:mean} merupakan kumpulan data. x1 sampai xn merepresentasikan tiap nilai dari kumpulan data. Penjumlahan dari setiap elemen dapat dibagi dengan jumlah elemen untuk mendapatkan rata-rata dari data tersebut. Untuk mempermudah penjelasan, diberikan contoh yaitu sebuah kumpulan data nilai ujian suatu kelas yaitu 90,85,75 dan 80. Jumlah elemen pada data nilai yaitu 4. Menggunakan \textit{mean} pada \ref{ref:mean}, didapatkan : 
+
+\begin{displaymath}
+\bar{x} = \frac{90+85+75+80}{4} \\
+= \frac{330}{4} = 82.5
+\end{displaymath}
+
+
+\subsubsection{Median}
+\textit{Median} adalah nilai tengah yang dapatkan dari sebuah data yang terurut. Jika banyaknya data genap, maka rumus mediannnya adalah : 
+
+\begin{equation}
+Me(Q2) = \frac{(X_{n/2} + X_{(n/2)+1})}{2}
+\label{ref:mediangenap}
+\end{equation}
+	
+$X_n dan X_{n+1}$ pada persamaan \ref{ref:medianganjil} merupakan data urutan ke $n/2$ yang sudah terurut menaik. Jika banyaknya data ganjil, maka rumus mediannya adalah : 
+
+\begin{equation}
+Me(Q2) = \frac{X_{(n+1)/2}}{2}
+\label{ref:medianganjil}
+\end{equation}
+
+ $X_{(n+1)/2}$ pada persamaan \ref{ref:medianganjil} merupakan data urutan ke $n/2$ yang sudah terurut menaik. Untuk mempermudah penjelasan, diberikan sebuah contoh yaitu kumpulan data nilai ujian yang sudah terurut menaik yaitu 75,80,85 dan 90. Maka didapatkan perhitungan \textit{median} yaitu :
+ 
+\begin{displaymath}
+Me(Q2) = \frac{X_{n/2} + X_{n/2}+1}{2} = \frac{X_{2} + X_{3}}{2} = \frac{80+85}{2} = 82.5
+\end{displaymath}
+
+\subsubsection{Modus}
+\textit{Modus} adalah elemen pada kumpulan data yang paling sering muncul. Terdapat beberapa jenis \textit{modus} yaitu \textit{unimodal} , \textit{bimodal} dan \textit{trimodal}.  \textit{Modus unimodal} yaitu elemen dengan frekuensi terbanyak berjumlah 1. Berikut adalah contoh kumpulan data nilai ujian sekolah yang terurut adalah 75,80,85,85 dan 90. \textit{Modus} pada kumpulan data ini adalah 85 karena frekuensi kemunculan elemen 85 adalah 2 kali.  
+
+%		RKS TEKNIK DATA MINING 
+\item \textbf{Melakukan studi literatur mengenai proses \textit{data mining} }\\
+		{\bf Status :} Ada sejak rencana kerja skripsi.\\
+		{\bf Hasil : }
+\subsection{Data Mining}
+\textit{Data Mining} / \textit{Knowledge Discovery Process} (KDD) adalah proses menemukan suatu pola dari kumpulan data yang besar. Dengan \textit{data mining}, manusia dapat menemukan sebuah 
+informasi / pemahaman baru dari data. Sumber data objek yang dapat diproses untuk \textit{data mining} adalah dari \textit{database}, \textit{data warehouse} atau data yang didapatkan dari sebuah proses.
+
+Suatu data objek yang digunakan di \textit{data mining} merupakan sebuah entitas. Kumpulan dari data objek disebut \textit{data set}. Contoh nama lain \textit{data set} adalah \textit{data points} dan \textit{objects}. Contoh data objek adalah data pelanggan di salon, transaksi pembelian di supermarket, data pasien di rumah sakit, data mahasiswa di kampus dan lain-lain.
+
+Atribut adalah sebuah karakteristik dan kondisi dari data objek. Data objek dapat memiliki satu atau lebih atribut.  Atribut dapat disebut juga sebagai dimensi, fitur atau variabel. Contoh atribut adalah
+sebuah data objek transaksi pembelian di supermarket memiliki kumpulan atribut yaitu \textit{customer\_ID}, \textit{name} dan \textit{address}. Sebuah atribut memiliki beberapa jenis yaitu nominal, biner, ordinal, atau numerik. 
+
+Atribut numerik adalah jenis nilai kuantitatif. Atribut numerik dapat diukur kuantitasnya. Nilai dari atribut numerik dapat berupa bilangan bulat (\textit{integer}) atau bilangan \textit{real}. Atribut numerik dapat dibagi lagi menjadi interval dan rasio.   
+
+Atribut nominal adalah tipe atribut yang tiap nilainya merupakan sebuah kategori/kondisi/kode. Atribut nominal memiliki isi berupa sebuah nama, simbol dari objek yang direpresentasikan. Nilai nominal tidak dapat dipengaruhi oleh perhitungan karena setiap angka/kode menunjukkan kondisi. Contoh atribut nominal adalah sebuah objek data pelanggan supermarket memiliki atribut jenis kelamin yang bernilai 'Pria' atau 'Wanita'.
+ 
+Atribut biner adalah tipe atribut yang serupa dengan nominal tetapi hanya memiliki 2 jenis nilai. Biasanya, nilai biner dikodekan menjadi 0 dan 1. Contoh dari nilai biner adalah atribut pembayaran pada data objek transaksi memiliki nilai \textit{true} atau \textit{false} yang menyatakan pernyataan pembayaran sudah diselesaikan.
+
+Atribut ordinal adalah tipe atribut yang memiliki hubungan keterurutan dari setiap nilainya. Atribut ordinal dapat dihasilkan dari mengubah nilai numerik yang disebut \textit{discretization}. Contoh dari atribut ordinal adalah nilai survei kepuasan penduduk yang awalnya memiliki rentang nilai 0 sampai 10 lalu dikonversikan menjadi ordinal berupa buruk, puas dan sangat puas.  
+
+\pagebreak
+
+ Proses dari \textit{data mining} yaitu 
+\begin{itemize}
+\item \textbf{\textit{Data cleaning}} : menghilangkan noise dan data yang tidak konsisten
+\item \textbf{\textit{Data integration}} : menggabungkan data dari beberapa sumber jika ada
+\item \textbf{\textit{Data transformation}} :mengubah bentuk data menjadi lebih mudah dan relevan untuk kebutuhan analisis
+\item \textbf{\textit{Data selection}} : memilih data yang relevan untuk melakukan analisis
+\item \textbf{\textit{Data mining}} :proses menggunakan metode \textit{machine learning} untuk menemukan pola dari sebuah data 
+\item \textbf{\textit{Pattern evaluation}} : untuk memeriksa dari pola yang dihasilkan apakah dapat menghasilkan kebenaran mengenai pola yang ditemukan
+\end{itemize}
+
+
+\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.7]{dataminingprocess}   
+	
+	\label{fig:dataminingprocess} 	
+	\caption{proses data mining}
+\end{figure} 
+
+\subsubsection{\textit{Data Cleaning}}
+\textit{Data Cleaning} merupakan salah satu tahap \textit{data Preprocessing}. \textit{Data cleaning} adalah kegiatan untuk membersihkan data. Data kotor adalah data dengan yang memiliki \textit{missing value}, mengubah atau menghilangkan \textit{noisy data}.\textit{Noisy data} adalah data yang seharusnya tidak berada dikumpulan \textit{dataset}. \textit{Noisy data} dapat muncul dikarenakan beberapa hal seperti kesalahan proses saat perangkat keras membaca data, salah input,\textit{human error} atau kesalahan saat diproses menggunakan perangkat lunak. \textit{Noisy data} harus dihilangkan dikarenakan dapat memengaruhi hasil proses \textit{data mining}.
+
+ Proses \textit{Data Cleaning} membantu analisis data yang lebih valid. Terdapat beberapa cara yang dapat dilakukan jika pada data terdapat nilai yang hilang / \textit{missing value} seperti :
+
+\begin{itemize}
+\item \textbf{Mengabaikan bagian data tersebut:} metode ini dapat dengan cara mengabaikan \textit{missing value}. \textit{Missing value} dapat diabaikan jika data yang \textit{missing value} tidak terlalu banyak. Sedikit data yang diabaikan tidak akan mempengaruhi hasil \textit{data mining}
+\item \textbf{Mengisi nilai yang hilang secara manual:} metode ini tidak dapat direkomendasikan karena prosesnya yang memakan banyak waktu.
+\item \textbf{Menggunakan nilai konstan untuk mengisi nilai yang hilang:} \textit{missing value} dapat diubah dengan membuat nilai konstan. Contoh yang dapat dipahami adalah mengubah \textit{value} yang kosong menjadi \textit{'unknown'} pada suatu atribut. Data yang sudah ditandai \textit{'unknown'} akan membantu komputer mengidentifikasinya. 
+\item \textbf{Menggunakan nilai tengah:} nilai yang hilang dapat diubah dengan nilai tengah yang tidak akan mempengaruhi distribusi data. Cara yang dapat digunakan adalah mengubah data tersebut menjadi \textit{mean} /rata-rata  dari \textit{data set}.
+\end{itemize}
+
+
+\subsubsection{\textit{Data Integration}} 
+\textit{Data integration} adalah proses menggabungkan data dari beberapa sumber data. \textit{Data integration} dapat menghasilkan data baru yang akan membantu proses \textit{data mining}. Kebutuhan baru akan tambahan deskripsi data membuat proses \textit{data integration} perlu dilakukan. Cara yang dapat dilakukan pada tahap \textit{Data integration} adalah menggabungkan beberapa tabel dari basisdata, \textit{web crawling} yaitu mengekstrak data dari \textit{web pages}. 
+
+
+
+\subsubsection{\textit{Data Reduction}} 
+\textit{Data reduction} adalah salah satu \textit{data preprocessing} yang dilakukan untuk mengurangi \textit{data set} menjadi jumlah yang lebih sedikit. \textit{Data reduction} diterapkan untuk mempercepat proses \textit{data mining} dan meningkatkan akurasi dalam proses \textit{data mining}. Metode \textit{Data reduction} dibagi menjadi dua yaitu \textit{dimensionality reduction} dan \textit{numerosity reduction}. 
+
+\textbf{\textit{Dimensionality Reduction}} adalah proses memilih atribut tertentu dan menghilangkan atribut data yang tidak dibutuhkan. Teknik yang dapat dilakukan adalah menggunakan \textit{feature selection}. \textit{Feature selection} adalah teknik untuk memilih atribut yang relevan untuk \textit{predictive analysis} menggunakan \textit{machine learning}.
+
+\textbf{\textit{Numerosity Reduction}} adalah proses memilih baris data tertentu dan menghilangkan sisa baris yang tidak digunakan. Cara yang dapat dilakukan adalah \textit{sampling} yaitu mengambil \textit{subset} dari data secara \textit{random}. \textit{Sampling} akan mengambil sebagian data yang mewakili kumpulan dari \textit{dataset}. 
+
+\subsubsection{\textit{Data Transformation}}
+\textit{Data Transformation} adalah proses mengubah data yang lebih sesuai saat digunakan saat proses \textit{data mining}. Terdapat beberapa metode yang dapat digunakan untuk \textit{data transformation} yaitu : 
+
+\begin{itemize}
+\item \textbf{Smoothing} : \textit{smoothing} adalah kegiatan untuk memproses \textit{noisy data}. \textit{Noisy data} dapat diproses dengan berbagai cara seperti mengubah menjadi \textit{mean} data tersebut dan mengabaikannya.
+\item \textbf{Attribute Construction} : menambah atribut baru berdasarkan atribut yang sudah ada demi membantu proses \textit{data mining}. 
+\item \textbf{Aggregation}: menghitung dan menyimpan data laporan seperti nilai maksimum, minimum dan rata-rata dari \textit{data set}
+\item \textbf{Normalization}: atribut data tertentu diskalakan pada rentang nilai tertentu yang lebih distandarkan.
+\item \textbf{Discretization}: proses mengubah atribut numerik menjadi diskret. Contohnya adalah mengubah  atribut 'umur'. Umur dapat diubah menjadi kelompok nilai yang memiliki jarak  berdasarkan jenis. Contohnya adalah 'balita' direntang 2-5 tahun, anak kecil direntang 5-12 dan 'remaja' rentang 12-17 tahun. 
+\end{itemize}
+
+
+\subsubsection{\textit{Data Selection}}
+\textit{Data Selection} adalah proses memilih data yang tepat untuk melakukan analisis dengan \textit{machine learning}. Sebuah \textit{data set} memiliki dua atau lebih atribut. Data perlu dipilih dengan mengambil atribut yang relevan dan mengabaikan atribut yang tidak relevan.\textit{Machine Learning} akan melakukan prediksi nilai atribut yang disebut \textit{response} / dependen berdasarkan atribut prediktor/independen Pemilihan atribut yang tepat akan meningkatkan akurasi dalam pembuatan \textit{model}. Terdapat beberapa teknik yang dapat digunakan untuk memilih fitur/prediktor yang tepat.
+
+\paragraph{Pearson Correlation}
+\textit{Pearson Correlation} adalah teknik yang dapat digunakan untuk memeriksa korelasi antara 2 atribut numerik yaitu A dan B. Berikut adalah rumus dari penghitungan koefisien korelasi : 
+
+\begin{equation}
+^r A,B = \frac{\sum_{i=1}^{n}(ai - \overline{A})(bi - \overline{B})}{n\sigma A \sigma B}
+\label{eqref:pearsoncorrelation}
+\end{equation}
+
+Persamaan \ref{eqref:pearsoncorrelation} adalah rumus \textit{pearson}. $n$ adalah jumlah baris, $ai$ dan $bi$ adalah nilai A baris i dan nilai B baris i, $ \overline{A} $  dan $\overline{B}$ adalah nilai rata-rata dari A dan B, $\sigma A$ dan $\sigma B$ adalah nilai standar deviasi dari A dan B. Jika hasil perhitungan koefisien korelasi lebih dari 0, maka A dan B memiliki hubungan \textbf{korelasi positif}. Hubungan korelasi positif adalah kondisi ketika naiknya nilai A maka nilai B juga akan naik. 
+
+Jika hasil perhitungan koefisien korelasi adalah 0, maka A dan B adalah atribut \textbf{independen} dan tidak memiliki korelasi. Jika hasil perhitungan koefisien korelasi adalah lebih kecil dari 0, maka A dan B memiliki hubungan \textbf{korelasi negatif}. Korelasi negatif adalah hubungan dimana ketika satu atribut nilainya semakin bertambah, maka atribut lain akan berkurang. \textit{Scatter plot} juga dapat digunakan untuk melihat korelasi antara 2 atribut.  
+
+
+\paragraph{Chi Square ($X^2 $)}
+\textit{Chi Square} adalah teknik yang dapat digunakan untuk memeriksa korelasi antara 2 atribut kategori. Berikut adalah rumus dari perhitungan \textit{chi square} yaitu : 
+
+\begin{equation}
+X_{c}^{2} = \sum \frac{(O_i - E_i)^2}{E_i}
+\label{eqref:chisquare}
+\end{equation}
+
+Persamaan \ref{eqref:chisquare} adalah rumus untuk menghitung \textit{chi Square}. c adalah tiap kejadian atribut respon dan prediktor. $O_i$ adalah jumlah \textit{observed value} yaitu jumlah kemunculan prediktor i pada respon i. \textit{Expected value} dapat dihitung dengan :
+
+\begin{equation}
+E1 = n * p 
+\end{equation}
+\begin{equation}
+p = P(predictor_i) * P(response_i) 
+\label{eqref:expectedvaluechisquare}
+\end{equation}
+
+Persamaan \ref{eqref:expectedvaluechisquare} adalah perhitungan untuk mendapatkan nilai \textit{Expected}. Penjumlahan dari setiap perhitungan kemungkinan pasangan atribut prediktor dan respon akan menjadi \textit{chi square}. Semakin tinggi nilai \textit{chi square}, maka semakin relevan sebuah pasangan atribut prediktor dan respon digunakan.
+
+
+
+
+
+
+%		RKS  TEKNIK MACHINE LEARNING 
+		\item \textbf{Melakukan studi literatur mengenai metode metode \textit{machine learning} yaitu \textit{clustering} dan \textit{classification} yang relevan}\\
+		{\bf Status :} Ada sejak rencana kerja skripsi.\\
+		{\bf Hasil :}  \\
 		
+		\subsection{Machine Learning}
+\textit{Machine learning} adalah metode yang dapat dilakukan komputer untuk belajar berdasarkan data. Dengan \textit{machine learning}, komputer dapat mengambil sebuah keputusan atau memrediksi. Komputer akan mencari pola dari kumpulan sampel data yang disebut dengan \textit{training data}. \textit{Machine learning} juga disebut sebagai \textit{predictive analysis} karena dapat membantu komputer untuk mengambil sebuah keputusan. \textit{Machine Learning} dapat dibedakan berdasarkan jenis \textit{input} dan \textit{output} yang dihasilkan.Jenis-jenis kategori \textit{Machine Learning} yaitu :  
+		
+		\begin{itemize}
+			\item \textit{\textbf{Supervised Learning}} : algoritma yang  menerima kumpulan sampel data yang dijadikan \textit{training data} dan menghasilkan \textit{output} berupa jenis kelas dari data tersebut. \textit{Supervised learning} menerima data yang sudah memiliki label agar dapat memrediksi data baru berdasarkan \textit{training data}. Algoritma \textit{supervised learning} antara lain adalah \textit{Regression} dan \textit{Classification}. \textit{Supervised learning}  disebut sebagai \textit{predictive analysis} karena kemampuannya untuk memprediksi nilai 
+			
+			\item \textit{\textbf{Unsupervised Learning}} : algoritma yang menerima kumpulan sampel data \textit{training} yang belum memiliki label. \textit{Unsupervised learning} dapat digunakan untuk mengelompokkan kumpulan data berdasarkan nilai dan kesamaan. Algoritma \textit{unsupervised learning} adalah \textit{clustering}. \textit{Unsupervised Learning} disebut sebagai \textit{descriptive analysis} karena kemampuannya untuk mengelompokkan data sesuai kemiripan dan mendeskripsikannnya. 
+		\end{itemize}		
+		
+		\subsubsection{Regression} 
+ \textit{Regression} adalah  teknik \textit{supervised learning} yang digunakan untuk memrediksi nilai kontinu. \textit{Regression} menerima sampel data numerik sebagai input untuk menghasilkan sebuah persamaan yang dapat digunakan untuk memrediksi nilai yang dibutuhkan. \textit{Regression} memrediksi nilai variabel bergantung (\textit{response}) berdasarkan nilai variabel  independen. Terdapat beberapa jenis \textit{regression} yaitu \textit{linear regression} dan \textit{polynomial regression}.
+		
+%		MACHINE LEARNING -> SUPERVISED -> REGRESSION -> LINEAR REGRESSION 
+\paragraph{Linear Regression}   
+Linear Regression adalah algoritma \textit{regression} yang digunakan untuk menghasilkan persamaan linear. \textit{Linear regression} juga dapat digunakan untuk menguji sejauh mana hubungan sebab akibat antara variabel dependen dengan variabel independen. \textit{Linear Regression} dapat digunakan untuk memrediksi nilai kontinu. Persamaan \textit{linear regression} yaitu : 
+		
+		\begin{equation}
+		 Y = a + bX
+		\label{eqref:linearregression}
+		\end{equation}
+		
+Nilai Y pada persamaan \eqref{eqref:linearregression} merupakan atribut variabel dependen (\textit{response}). X merupakan atribut variabel independen (\textit{predictor}). a merupakan konstanta dan b merupakan koefisien regresi (kemiringan). Koefisien regresi merupakan besaran \textit{response} yang ditimbulkan oleh \textit{predictor}. Nilai-nilai a dan b dapat dihitung dengan menggunakan rumus yaitu : 
+		
+		\begin{equation}
+		 a = \frac{(\sum_{}^{} y)(\sum_{}^{} x^2) - (\sum_{}^{} x)(\sum{}^{} xy)}{n(\sum{}^{} x^2)-(\sum{}^{} x)^2}   
+		 \label{eqref:konstantalinearregresi}
+		\end{equation}
+		\begin{equation}
+		b = \frac{n(\sum{}^{} xy)-(\sum{}^{} x)(\sum{}^{} y)}{n(\sum{}^{} x^2)-(\sum{}^{} x)^2}
+		\label{eqref:koefisienregresi}
+		\end{equation}
+		
+Berdasarkan uraian rumus \eqref{eqref:koefisienregresi} dan rumus \eqref{eqref:konstantalinearregresi}, seberapa kuatnya pengaruh variabel atribut independen terhadap variabel  atribut dependen dapat dihitung menggunakan koefisien determinasi ($\mathbf{R^2}$). \textbf{Koefisien determinasi} adalah nilai yang menunjukkan kuat/tidaknya hubungan antara dua variabel. Berikut adalah cara menghitung koefisien determinasi : 
+		
+		\begin{equation}
+		R^2 = \frac{((n)(\sum{}^{}XY)-(\sum{}^{}X)(\sum{}^{}Y))^2}{(n(\sum{}^{}X^2)-(\sum{}^{}X)^2(n(\sum{}^{}Y^2))-(\sum{}^{}Y)^2)}
+		\label{eqref:koefisiendeterminasi}		
+		\end{equation}
+		
+Uraian rumus \eqref{eqref:koefisiendeterminasi} diatas merupakan cara untuk menghitung koefisien determinasi. Terdapat 3 kemungkinan dalam hasil perhitungan koefisien determinasi. Jika nilai \textit{$R^2$} > 0, maka kedua atribut memiliki korelasi positif. Korelasi positif  terjadi saat suatu nilai atribut meningkat (X), maka atribut lainnya (Y) juga meningkat. Jika nilai \textit{$R^2$} < 0, maka kedua atribut memiliki korelasi negatif. Korelasi negatif terjadi saat  nilai atribut meningkat, maka atribut lainnya (Y) juga akan menurun. Jika nilai \textit{$R^2$} = 0, maka kedua atribut tidak memiliki korelasi sama sekali. 
 
-	\end{enumerate}
+Untuk mempermudah penjelasan, maka diberikan contoh perhitungan menggunakan \textit{linear regression}. Terdapat \textit{dataset} dengan 2 variabel yaitu suhu ruangan dan jumlah cacat produksi. Berikut adalah isi dari \textit{data set} : 
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+Biaya Promosi (X) & Volume Penjualan (Y) \\ 
+\hline 
+12 & 56 \\ 
+\hline 
+14 & 62 \\ 
+\hline 
+13 & 60 \\ 
+\hline 
+12 & 61 \\ 
+\hline 
+15 & 65 \\ 
+\hline 
+13 & 66 \\ 
+\hline 
+14 & 60 \\ 
+\hline 
+15 & 63 \\ 
+\hline 
+13 & 65 \\ 
+\hline 
+14 & 62 \\ 
+\hline 
+\end{tabular} 
+\caption{tabel dataset }
+\label{tab:dataset}
+\end{table}
+\pagebreak
+Biaya promosi pada Tabel \ref{tab:dataset} merupakan variabel prediktor / independen (X). Volume penjualan pada tabe \ref{tab:dataset} merupakan varibel dependen / respon (Y). Tujuan \textit{linear regression} adalah memprediksi volume penjualan berdasarkan biaya promosi yang dikeluarkan. Menggunakan persamaan \textit{linear regression}, maka kita harus mencari a (konstanta) dan b(koefisien) pada persamaan \ref{eqref:linearregression}. Berikut adalah tabel perhitungan $\sum y$  , $\sum x^2$ , $\sum xy$ , $(\sum x)^2$ pada Tabel \ref{tab:konstantakoefisienlinear} adalah :
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+no & x & y & $x^2$ & xy \\ 
+\hline 
+1 & 12 & 56 & 144 & 672 \\ 
+\hline 
+2 & 14 & 62 & 196 & 868 \\ 
+\hline 
+3 & 13 & 60 & 169 & 780 \\ 
+\hline 
+4 & 12 & 61 & 144 & 732 \\ 
+\hline 
+5 & 15 & 65 & 225 & 975 \\ 
+\hline 
+6 & 13 & 66 & 169 & 858 \\ 
+\hline 
+7 & 14 & 60 & 196 & 840 \\ 
+\hline 
+8 & 15 & 63 & 225 & 945 \\ 
+\hline 
+9 & 13 & 65 & 169 & 845 \\ 
+\hline 
+10 & 14 & 62 & 196 & 868 \\ 
+\hline 
+$\sum $ & 135 & 620 & 1833 & 8383 \\ 
+\hline 
+\end{tabular} 
+\caption{ perhitungan komponen konstanta dan koefisien}
+\label{tab:konstantakoefisienlinear}
+\end{table} 
+
+Setelah menghitung komponen untuk konstanta dan koefisien, maka akan diterapkan pada rumus konstanta dan koefisien pada persamaan \ref{eqref:koefisienregresi} yaitu : 
+\begin{equation}
+ a = \frac{(620)(1833) - (135)(8383)}{10(1833) -18255 }  = 45.29
+ \label{eqref:konstantacontoh}
+\end{equation}
+\begin{equation}
+ b = \frac{10(8383) - (135)(620)}{10(1833) -18255 } = 1.24 
+ \label{eqref:koefisiencontoh}
+\end{equation}
+Koefisien dan konstanta yang diperoleh pada persamaan \ref{eqref:koefisiencontoh} dan \ref{eqref:konstantacontoh}  dapat diterapkan pada rumus \textit{linear regression} pada persamaan \ref{eqref:linearregression}. Persamaan setelah didapatkan konstanta dan koefisiennya adalah : 
+\begin{equation}
+  Y = 45.29 + 1.24X
+  \label{eqref:contohpersamaanlinear}
+\end{equation}
+Menggunakan persamaan \ref{eqref:contohpersamaanlinear} yang sudah diperoleh , maka prediksi volume penjualan menggunakan \textit{linear regression} dapat dihitung menggunakan biaya promosi. Berikut adalah tabel perbandingan antara volume penjualan asli (Y) dan volume penjualan prediksi \textit{linear regression} (\^{Y}) pada Tabel \ref{tab:perbandinganlinearregression}
+
+\pagebreak
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+Biaya Promosi (X) & Volume Penjualan (Y) & Volume Penjualan Prediksi (\^{Y}) \\ 
+\hline 
+12 & 56 & 60.14 \\ 
+\hline 
+14 & 62 & 62.62 \\ 
+\hline 
+13 & 60 & 61.38 \\ 
+\hline 
+12 & 61 & 60.14 \\ 
+\hline 
+15 & 65 & 63.86 \\ 
+\hline 
+13 & 66 & 61.38 \\ 
+\hline 
+14 & 60 & 62.61 \\ 
+\hline 
+15 & 63 & 63.86 \\ 
+\hline 
+13 & 65 & 61.38 \\ 
+\hline 
+14 & 62 & 62.61 \\ 
+\hline 
+\end{tabular} 
+\caption{perbandingan volume penjualan prediksi dan volume penjualan asli}
+\label{tab:perbandinganlinearregression}
+\end{table}
+
+		
+%		MACHINE LEARNING -> SUPERVISED -> REGRESSION -> POLYNOMIAL REGRESSION 
+		\paragraph{\textbf{Polynomial Regression}}
+ \textit{Polynomial Regression} adalah algoritma \textit{regression} yang digunakan untuk menghasilkan persamaan polinomial (suku banyak) berdasarkan data yang diinput. Persamaan  akan berubah sesuai dengan \textit{degree} / orde yang ditentukan. Persamaan yang dihasilkan dapat digunakan untuk menghitung nilai variabel bergantung menggunakan nilai variabel independen dan koefisien yang ditemukan. Persamaan \textit{polynomial regression} adalah : 
+		
+		
+		\begin{equation}
+		   y = a0 + a_1x + a_2x^2 + .. +  a_n x^n     
+		   \label{eqref:persamaanpolinom}
+		\end{equation}
+		
+		
+Nilai Y pada persamaan \ref{eqref:persamaanpolinom} merupakan variabel dependen yang ingin diprediksi. Nilai a0 sampai aN adalah nilai koefisien. Nilai X adalah atribut variabel independen. Sebelum menggunakan persamaan diatas, kita perlu untuk mencari koefisien dari setiap suku perpangkatan. Untuk persamaan polinomial orde 2 didapatkan hubungan yaitu : 
+		
+		
+		\begin{equation}
+		\begin{cases}
+		  
+		   	na_0 + (\sum_{i=1}^{n}xi) a_1 + (\sum_{i=1}^{n}xi ^2)a_2 &= \sum_{i = 1}^{n} yi \\
+		   		(\sum_{i=1}^{n}xi) a_0 + (\sum_{i=1}^{n}xi^2)a_1 + (\sum_{i=1}^{n} xi^3)a_2 &= \sum_{i=1}^{n} (x_i y_i) \\
+		   		(\sum_{i=1}^{n} xi^2)a_0 + (\sum_{i=1}^{n} xi^3)a_1 + (\sum_{i=1}^{n}xi^4)a_2 &= \sum_{i=1}^{n}(x_i^2 y_i)
+		   
+		\end{cases}
+		\label{eqref:hubunganpolinom}
+	   \end{equation}
+		
+Berdasarkan persamaan \ref{eqref:hubunganpolinom}, dapat diubah dalam bentuk matriks persamaan untuk mendapatkan koefisien yaitu : 
+		
+		\begin{equation}
+			\begin{bmatrix}
+			n & \sum_{i=1}^{n}xi & \sum_{i=1}^{n}xi ^2 \\
+			\sum_{i=1}^{n}xi & \sum_{i=1}^{n}xi^2 & \sum_{i=1}^{n} xi^3 \\
+			\sum_{i=1}^{n} xi^2 & \sum_{i=1}^{n} xi^3 & \sum_{i=1}^{n}xi^4
+			\end{bmatrix}
+			\begin{bmatrix}
+			a0 \\ 
+			a1 \\ 
+			a2
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				 \sum_{i = 1}^{n} yi \\
+				 \sum_{i=1}^{n} (x_i y_i) \\
+				 \sum_{i=1}^{n}(x_i^2 y_i)
+			\end{bmatrix}
+			\label{eqref:matrixpolinom}
+		\end{equation}
+		
+Persamaan \eqref{eqref:matrixpolinom} dapat menemukan masing-masing koefisien sehingga dapat dimasukan pada persamaan \textit{Polynomial Regression}. Hasil perhitungan koefisien dapat diaplikasikan pada rumus persamaan sehingga bisa menghitung prediksi nilai atribut respon (dependen).
+\pagebreak
+Untuk mempermudah penjelasan, maka diberikan contoh perhitungan menggunakan \textit{polynomial regression}. Terdapat \textit{dataset} dengan 2 variabel yaitu suhu ruangan dan jumlah cacat produksi. Berikut adalah isi dari \textit{data set} : 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+Biaya Promosi (X) & Volume Penjualan (Y) \\ 
+\hline 
+12 & 56 \\ 
+\hline 
+14 & 62 \\ 
+\hline 
+13 & 60 \\ 
+\hline 
+12 & 61 \\ 
+\hline 
+15 & 65 \\ 
+\hline 
+13 & 66 \\ 
+\hline 
+14 & 60 \\ 
+\hline 
+15 & 63 \\ 
+\hline 
+13 & 65 \\ 
+\hline 
+14 & 62 \\ 
+\hline 
+\end{tabular} 
+\caption{tabel dataset }
+\label{tab:datasetpolynom}
+\end{table}
+
+Biaya promosi pada tabel \ref{tab:datasetpolynom} merupakan variabel prediktor / independen (X). Volume penjualan pada tabe \ref{tab:dataset} merupakan varibel dependen / respon (Y). Tujuan \textit{polynomial} adalah memprediksi volume penjualan berdasarkan biaya promosi yang dikeluarkan. Menggunakan persamaan \textit{polynomial regression}, maka perlu menghitung komponen untuk persamaan \eqref{eqref:hubunganpolinom} hubungan berupa $\sum x$ , $\sum y$ , $\sum x^2$ , $\sum x^3$ , $\sum x^4$ , $\sum xy$ dan $\sum x^2 y$ pada Tabel \ref{tab:tabelhubunganpolinomcontoh}  yaitu :  
+
+\begin{table}[ht]
+\centering 
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+no & x & y & $x^2$ & $x^3$ & $x^4$ & xy & $x^2 y$ \\ 
+\hline 
+1 & 12 & 56 & 144 & 1728 & 20736 & 672 & 9064 \\ 
+\hline 
+2 & 14 & 62 & 196 & 2744 & 48416 & 868 & 12152 \\ 
+\hline 
+3 & 13 & 60 & 169 & 2197 & 28561 & 780 & 10140 \\ 
+\hline 
+4 & 12 & 61 & 144 & 1728 & 20736 & 732 & 8784 \\ 
+\hline 
+5 & 15 & 65 & 225 & 3375 & 50625 & 975 & 14625 \\ 
+\hline 
+6 & 13 & 66 & 169 & 2197 & 28561 & 858 & 11154 \\ 
+\hline 
+7 & 14 & 60 & 196 & 2744 & 38416 & 840 & 11760 \\ 
+\hline 
+8 & 15 & 63 & 225 & 3375 & 50625 & 945 & 14175 \\ 
+\hline 
+9 & 13 & 65 & 169 & 2197 & 28561 & 845 & 10985 \\ 
+\hline 
+10 & 14 & 62 & 196 & 2744 & 38416 & 868 & 12152 \\ 
+\hline 
+$\sum  $ & 135 & 620 & 1833 & 25029 & 343653 & 8383 & 113991 \\ 
+\hline 
+\end{tabular} 
+\caption{perhitungan komponen matriks hubungan polinom orde 2}
+\label{tab:tabelhubunganpolinomcontoh}
+\end{table}
+
+Perhitungan Tabel \ref{tab:tabelhubunganpolinomcontoh} akan dimasukkan ke persamaan hubungan polinom yaitu : 
+
+\begin{displaymath}
+		\begin{cases}
+		   	(10)a_0 + (135) a_1 + (1833)a_2 &= 620 \\
+		   		(135) a_0 + (1833)a_1 + (25049)a_2 &= 8383 \\
+		   		(1833)a_0 + (25049)a_1 + (343653)a_2 &= 113991	   
+		\end{cases}  
+\end{displaymath} 
+
+Menghitung koefisien a0,a1 dan a2 dapat menggunakan operasi matriks perkalian invers yaitu : 
+
+\begin{displaymath}
+			\begin{bmatrix}
+			10 & 135 & 1833 \\
+			135  & 1833 & 25049 \\
+			1833 & 25049 & 343653 
+			\end{bmatrix}
+			\begin{bmatrix}
+			a0 \\ 
+			a1 \\ 
+			a2
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				 620\\
+				8383 \\
+				 113991
+			\end{bmatrix}
+\end{displaymath}
+
+Berdasarkan perhitungan matriks, maka didapatkan a0 = -67.96428571 , a1 = 18.11309524  dan a2 = -0.625. Hasil perhitungan tiap koefisien dapat dimasukkan pada persamaan \ref{eqref:persamaanpolinom} sehingga membentuk persamaan untuk menghitung volume penjualan (Y) menggunakan biaya promosi (X) dengan :
+
+
+\begin{displaymath}
+ Y = -67.96 + 18.11X + (-0.63)X^2 
+\end{displaymath}
+
+
+Menggunakan persamaan yang sudah diperoleh, maka prediksi volume penjualan (Y) menggunakan \textit{polynomial regression} dapat dihitung menggunakan biaya promosi. Berikut adalah  perbandingan antara volume penjualan asli (Y) dan volume penjualan prediksi \textit{polynomial regression} (\^{Y}) pada Tabel \ref{tab:perbandinganpolynomialregression} yaitu :
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+Biaya Promosi (X) & Volume Penjualan (Y) & Prediksi Volume Penjualan (\^{Y})  \\ 
+\hline 
+12 & 56 & 59.39 \\ 
+\hline 
+14 & 62 & 63.11 \\ 
+\hline 
+13 & 60 & 61.88 \\ 
+\hline 
+12 & 61 & 59.39 \\ 
+\hline 
+15 & 65 & 63.10 \\ 
+\hline 
+13 & 66 & 61.88 \\ 
+\hline 
+14 & 60 & 63.11 \\ 
+\hline 
+15 & 63 & 63.10 \\ 
+\hline 
+13 & 65 & 61.88 \\ 
+\hline 
+14 & 62 & 63.11 \\ 
+\hline 
+\end{tabular} 
+\caption{perbandingan prediksi volume penjualan (Y) polynomial regression}
+\label{tab:perbandinganpolynomialregression}
+\end{table}
+
+
+\paragraph{Evaluasi Regresi Linear}
+Metode yang dapat digunakan untuk menguji seberapa baik hasil prediksi atribut respon yang ingin diperoleh adalah dengan membandingkan selisih antara atribut respon pada \textit{test set} (y true) dengan atribut respon yang diprediksi (y pred) menggunakan model ini. Selisih antara prediksi dan yang asli disebut dengan \textit{error}. \textit{Mean Squared Error} (MSE) adalah rata-rata dari nilai \textit{error} setiap data objek. Rumus dari MSE (\ref{eqref:mse}) adalah : 
+
+
+\begin{equation}
+  \frac{1}{N}\sum_{i=1}^{n} (y true_i - y pred_i)
+  \label{eqref:mse}
+\end{equation}
+
+\textit{Root Mean Squared Error} (RMSE) adalah akar pangkat dari MSE yang akan memberikan nilai yang lebih dapat dinormalkan. Berikut adalah rumus dari RMSE (\ref{eqref:rmse}) yaitu : 
+
+\begin{equation}
+ \sqrt{\frac{1}{N}\sum_{i=1}^{n} (y true_i - y pred_i)}
+  \label{eqref:rmse}
+\end{equation}
+
+		
+		
+		% MACHINE LEARNING -> Classification 
+		\subsubsection{Classification}
+\textit{Classification} merupakan metode \textit{supervised learning} selain regresi. \textit{Classification} dilakukan untuk menetapkan label data / kategori pada sebuah \textit{data object}. \textit{Classification} merupakan proses untuk memetakan variabel prediktor / independen (X) terhadap variabel respon / dependen (Y). Terdapat beberapa algoritma \textit{classification} yang dapat digunakan untuk memrediksi nilai label pada \textit{data set}. 
+\pagebreak
+\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.4]{classificationmodel}   
+	\label{fig:classificationprocess} 
+	\caption{\textit{classification model}}
+\end{figure} 
+
+Gambar \ref{fig:classificationprocess} menunjukkan sebuah proses dalam melakukan \textit{classification}. \textit{Classifier} / \textit{classification technique} adalah sebuah cara untuk membuat model dari \textit{input data set}. Pada awalnya, \textit{dataset} dapat dibagi menjadi 2 bagian yaitu \textit{training set} dan \textit{test set}. Terdapat \textit{training set} yaitu kumpulan data / \textit{record} yang sudah memiliki label data akan di\textit{train} modelnya dengan menggunakan algoritma \textit{classification}. Model yang sudah dibuat akan digunakan untuk memrediksi nilai label dari data yang ingin diprediksi yaitu \textit{test set} untuk diuji keakuratannya. Hasil nilai label yang sudah diprediksi dapat dinilai dengan cara membandingkan hasil prediksi label dengan label asli pada \textit{test set}.
+
+
+Dalam memanfaatkan \textit{classification} untuk memrediksi nilai label, terdapat beberapa algoritma yang dapat dimanfaatkan untuk melakukan \textit{classification} yaitu \textit{Decision Tree} ,\textit{k Nearest Neighbors} (kNN), dan \textit{Naive Bayes Classifier}.
+
+\paragraph{Decision Tree} 
+\textit{Decision tree} adalah teknik \textit{classifier} dapat digunakan untuk menentukan label data pada \textit{test set}. \textit{Decision tree} akan membentuk sebuah pohon keputusan berdasarkan atribut prediktor yang akan digunakan untuk membuat model. Pohon keputusan yang dihasilkan akan menjadi aturan bagaimana menentukan label dari \textit{data set}. Membuat \textit{Decision tree} akan memanfaatkan \textit{training set} untuk menentukan berdasarkan apa pohon dapat di\textit{split}. 
+
+Struktur sebuah pohon keputusan memiliki 3 \textit{node} yaitu : 
+\begin{itemize}
+\item \textbf{\textit{Root node}} : tidak memiliki \textit{incoming edge} dan tidak atau banyak \textit{edges}
+\item \textbf{\textit{Internal nodes}} : memiliki satu \textit{incoming edge} dan banyak \textit{outgoing edges} 
+\item \textbf{\textit{Leaf / terminal nodes}} memiliki satu \textit{incoming edge} dan tidak ada \textit{outgoing edges}
+\end{itemize}
+\pagebreak
+\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.4]{decisiontreeexample}   
+	\label{fig:decisiontreeexample} 
+	\caption{ilustrasi Decision Tree}
+\end{figure} 
+
+Gambar \ref{fig:decisiontreeexample} menunjukkan sebuah contoh bagaimana penerapan pohon keputusan pada sebuah \textit{dataset} binatang. Tujuan dari pohon keputusan adalah untuk menentukan aturan apakah sebuah binatang termasuk \textit{mammals} atau \textit{non-mammals}. Atribut prediktor yang terdapat ada \textit{root node}dan \textit{internal node}seperti \textit{Body temperature} dan \textit{Given Birth} digunakan untuk memecah \textit{data} agar dapat menentukan label. 
+
+
+Teknik ini dapat menghasilkan berbagai pohon keputusan berdasarkan attribut yang dipilih sebagai atribut pembagi. Untuk menghasilkan \textit{model} yang akurat, dibutuhkan cara untuk menentukan atribut yang dapat membagi pohon. Cara memilih atribut adalah dengan mengukur tingkat \textit{impurity} / ketidakmurnian dari \textit{node}. Tujuan dari pembuatan pohon keputusan ini adalah untuk membuat semua \textit{node} \textit{pure} / murni. Sebuah \textit{node} dapat dikatakan murni jika sudah memiliki label data. 
+
+\textit{Entropy} adalah ukuran \textit{randomness} / ketidakpastian sebuah data. Semakin rendah nilai \textit{entropy}, maka semakin murni \textit{node} tersebut. Rumus dari entropi adalah yaitu :
+
+\begin{equation}
+Entropy(t) = - \sum_{i=0}^{c-1} p(i|t)\log_2 (i|t)
+\label{eqref:entropi}
+\end{equation}
+
+Berdasarkan uraian rumus \eqref{eqref:entropi} , perhitungan entropi merupakan penjumlahan peluang tiap kelas  \textit{i} terhadap semua jumlah data \textit{t}. Untuk menentukan atribut mana yang dapat digunakan sebagai pemecah, kita butuh untuk membandingkan tingkat ketdakmurnian \textit{parent node} (sebelum dipecah) dengan  tingkat ketidakmurnian dari \textit{child node} (setelah dipecah).  \textit{\textbf{Information Gain}} ($\Delta$ info) adalah sebuah kriteria yang dapat digunakan untuk menentukan atribut pembagi dalam pembentukan pohon. Rumus dari \textit{information gain}  yaitu : 
+
+\begin{equation}
+  \Delta info = I(parent) - \sum_{j=1}^{k} \frac{N(vj)}{N}I(jv)
+  \label{eqref:information gain}
+\end{equation}
+
+rumus \eqref{eqref:information gain} \textit{I} adalah nilai ketidakmurnian yang dapat diperoleh menggunakan \textit{entropy}. N adalah total observasi data / jumlah \textit{record} dari \textit{parent node}, \textit{k} adalah jumlah nilai dari suatu atribut, dan \textit{vj} adalah jumlah \textit{record} pada nilai atribut j. \textit{Decision} tree akan memilih atribut prediktor mana dengan memilih nilai $\Delta$ (info) yang maksimum.
+
+\paragraph{k-Nearest Neighbor Classifiers}
+ \textit{k-Nearest Neighbor} adalah algoritma \textit{classification} untuk menentukan label sebuah data. \textit{k-Nearest Neighbor} akan menentukan label data baru berdasarkan \textit{dataset} yang sudah memiliki label pada \textit{training set}. Menentukan label untuk data baru dapat ditentukan dengan mencari  \textit{training data} yang terdekat dengan data baru. Label pada \textit{k}-jarak terdekat menjadi label bagi data baru. Setiap data pada \textit{dataset} dapat dianalogikan sebagai titik yang akan dibandingkan jaraknya. Menghitung jarak antara titik data baru dan setiap titik pada \textit{dataset} dapat menggunakan \textit{euclidean distance}. Menghitung \textit{Euclidean distance} adalah dengan rumus : 
+
+\begin{equation}
+	dist(X,Y) = \sqrt[]{\sum_{n}^{i=1}(xi-yi)^2}
+	\label{eqref:euclideandistanceknn}
+\end{equation}
+
+Uraian rumus \eqref{eqref:euclideandistanceknn} diatas merupakan cara menghitung jarak antara titik baru dengan suatu titik pada \textit{training set}. X merupakan data baru dan Y merupakan suatu titik pada \textit{training set}. Xi merupakan setiap atribut variabel pada data baru dan Yi merupakan setiap atribut variabel pada titik \textit{training set}. Algoritma \textit{k-Nearest Neighbor} akan menghitung \textit{euclidean distance} sebanyak N yaitu jumlah \textit{row} pada \textit{training set} untuk membandingkan jarak data baru dengan setiap data pada \textit{training set}. 
+
+
+Menggunakan \textit{euclidean distance} dapat diterapkan untuk atribut dengan tipe data numerik. Tetapi, untuk atribut nominal seperti jenis warna (biru,merah, hijau dan lain-lain) membutuhkan mekanisme berbeda untuk menentukan jarak terdekat. Menentukan angkanya adalah jika nilai atribut data baru sama dengan data pada \textit{training set} maka jaraknya adalah 0. Jika nilai atirbut data baru tidak sama dengan sebuah data pada \textit{training set}, maka jaraknya adalah 1. 
+
+Tahap pertama dalam mencari label untuk data baru menggunakan \textit{k-Nearest Neighbor} adalah  dengan menentukan k tetangga terdekat. Cara menentukan k terbaik adalah dengan mencoba menghitung jarak pada setiap k. K terbaik dapat ditentukan dengan mencari akurasi tertinggi dari setiap percobaan k.
+
+Untuk mempermudah penjelasan, akan diberikan contoh perhitungan menggunakan \textit{k-Nearest Neighbor} untuk memprediksi nilai kategori pada data baru. Berikut adalah contoh \textit{data set} yang digunakan sebagai \textit{training set} untuk membuat model \textit{k-Nearest Neighbor} : 
+
+\begin{table}[ht]
+\centering 
+
+\begin{tabular}{|c|c|c|}
+\hline 
+x & y & kategori \\ 
+\hline 
+7 & 6 & Bad \\ 
+\hline 
+6 & 6 & Bad \\ 
+\hline 
+6 & 5 & Bad \\ 
+\hline 
+1 & 3 & Good \\ 
+\hline 
+2 & 4 & Good \\ 
+\hline 
+2 & 2 & Good \\ 
+\hline 
+\end{tabular} 
+ \caption{tabel data set k-nearest neighbor}
+ \label{tab:datasetknn}
+ \end{table}
+ 
+ Tabel \ref{tab:datasetknn} berisi 2 variabel prediktor / independen yaitu x dan y. Kategori merupakan variabel respon / dependen. Diberikan sebuah data objek baru dengan x = 3 dan y = 5. Algoritma \textit{k-Nearest Neighbors}  memilih k tetangga terdekat.  Nilai k yang ditentukan adalah 3. Menggunakan \textit{euclidean distance}, berikut adalah perhitungan jarak setiap data pada \textit{data set}  dengan data baru yaitu : 
+ 
+ \begin{table}[ht]
+ \centering
+\begin{tabular}{|c|c|c|c|c|}
+ \hline 
+ x & y & kategori & euclidean distance dengan data baru & perhitungan \\ 
+ \hline 
+ 7 & 6 & Bad & 4.12 & $\sqrt{(7-3)^2+(6-5)^2}$ \\ 
+ \hline 
+ 6 & 6 & Bad & 3.16 & $\sqrt{(6-3)^2+(6-5)^2}$ \\ 
+ \hline 
+ 6 & 5 & Bad & 3 & $\sqrt{(6-3)^2+(5-5)^2}$ \\ 
+ \hline 
+ 1 & 3 & Good & 2.82 & $\sqrt{(1-3)^2+(3-5)^2}$ \\ 
+ \hline 
+ 2 & 4 & Good & 1.41 & $\sqrt{(2-3)^2+(3-5)^2}$ \\ 
+ \hline 
+ 2 & 2 & Good & 3.16 & $\sqrt{(2-3)^2+(2-5)^2}$ \\ 
+ \hline 
+ \end{tabular}  
+ \caption{tabel perhitungan euclidean distance dengan data baru}
+ \label{tab:hitunganeuclideandistanceknn}
+  \end{table}
+  
+Setelah menghitung setiap jarak dengan data baru, maka \textit{k-Nearest Neighbors} akan memilih tetangga terdekat sebanyak k. Karena k = 3, maka akan dipilih kategori berdasarkan tiga tetangga dengan selisih jarak \textit{euclidean distance} minimum. Berikut adalah 3 tetangga terdekat dengan data baru pada Tabel \ref{tab:tabel3tetangga} yaitu : 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+x & y & kategori & Jarak dengan data baru \\ 
+\hline 
+2 & 4 & Good & 1.41 \\ 
+\hline 
+1 & 3 & Good & 2.82 \\ 
+\hline 
+6 & 5 & Bad & 3 \\ 
+\hline 
+\end{tabular} 
+\caption{3 tetangga terdekat berdasarkan perhitungan euclidean distance}
+\label{tab:tabel3tetangga}
+ \end{table}
+
+Tabel \ref{tab:tabel3tetangga} menunjukkan bahwa terdapat 3 tetangga terdekat. Algoritma \textit{k-Nearest Neighbors} akan menentukan kategori dari data baru berdasarkan jarak terdekat dan paling banyak. Pada 3 jarak terdekat, terdapat 2 kategori Good dan 1 kategori Bad. Karena jumlah Good lebih banyak daripada Bad, maka data baru akan memiliki kategori Good
+
+ 
+\paragraph{Evaluasi Classification} 
+Cara yang dapat digunakan untuk melakukan evaluasi terhadap model yang sudah dibuat adalah dengan menghitung jumlah perbandingan data yang benar dan salah. \textit{Accuracy} adalah sebuah metode \textit{performance metric} yang dapat digunakan untuk menghitung performa model. Cara menghitung akurasi yaitu : 
+
+\begin{displaymath}
+    Accuracy  = \frac{Jumlah prediksi yang benar}{Jumlah semua prediksi}
+\end{displaymath} 
+
+\textit{Error rate} adalah cara lain yang dapat digunakan sebagai menilai performa model berdasarkan nilai \textit{error} yang dihasilkan. Cara menghitung \textit{error rate} adalah sebagai berikut : 
+
+\begin{displaymath}
+ Error rate = \frac{Jumlah prediksi yang salah}{Jumlah semua prediksi}
+\end{displaymath}
+
+%	RKS: MACHINE LEARNING - > CLUSTERING 
+\subsubsection{Clustering}
+\textit{Clustering} merupakan teknik \textit{unsupervised learning}. \textit{Clustering} akan mengelompokkan tiap data objek pada \textit{data set} menjadi beberapa kelompok. \textit{Clustering} mengelompokkan data objek yang memiliki kemiripan menjadi satu kelompok dan data objek yang tidak memiliki kemiripan menjadi kelompok yang berbeda. Kemiripan dan ketidakmiripan dari data objek dapat ditentukan menggunakan atribut prediktor pada \textit{dataset}. Ukuran yang dapat ditentukan untuk kemiripan tiap data objek adalah berdasarkan perhitungan jarak. Terdapat beberapa metode \textit{clustering} yaitu : 
+
+\begin{itemize}
+
+\item \textbf{Partitioning methods} : metode \textit{clustering} dengan membuat k partisi dimana jumlah partisi (k) <= N (jumlah data objek). Tiap partisi harus minimal berisi satu data objek. Contoh algoritma \textit{partitioning} adalah \textit{k-Means} 
+
+\item \textbf{Hierarchical methods} : metode \textit{clustering} dengan cara melakukan proses dekomposisi menjadi hirarki.Hirarki yang dihasilkan adalah tingkatan jumlah kelompok yang dihasilkan. Terdapat dua jenis \textit{Hierarchical methods} yaitu \textit{agglomerative} dan \textit{divisive}. \textit{Agglomerative} menerapkan \textit{bottom-up approach}. \textit{Agglomerative} berawal dari tiap data objek pada \textit{dataset} menjadi data yang terpisah. Masing-masing data objek digabung satu per satu sehingga membentuk satu kelompok yang besar. \textit{Divisive} menerapkan \textit{top-bottom approach} yaitu setiap data objek yang dijadikan satu kelompok besar. Setiap iterasi akan dibagi menjadi kelompok-kelompok kecil sampai tiap data objek merupakan kelompok yang terpisah.
+
+\item \textbf{Density-based methods} : metode \textit{clustering} dengan cara membagi kumpulan data objek menjadi bentuk kelompok yang lebih kompleks. Contoh algoritma \textit{density} adalah \textit{Density Based Spatial Clustering} (DBSCAN). Cara kerjanya adalah setiap data objek yang merupakan titik secara acak diambil  untuk ditentukan jenisnya. Suatu titik merupakan \textit{core points} jika masih memiliki tetangga yang jaraknya lebih kecil dari epsilon.Jika tidak terdapat titik tetangga terdekat, titik dijadikan sebuah \textit{border points}. Setelah itu berpindah ke titik tetangga \textit{core points} terdekat lalu diulangi lagi sampai semua menjadi mempunyai \textit{cluster} atau \textit{outlier}
+\end{itemize}
+
+\paragraph{k-Means}
+\textit{k-Means} adalah algoritma \textit{clustering} jenis \textit{partitioning}. Algoritma ini mengelompokkan data objek dengan memaksimalkan kemiripan. Ukuran kemiripan antar data objek dapat diukur menggunakan jarak. Jumlah kelompok akan ditentukan berdasarkan nilai k yang ditentukan. Setelah nilai k telah ditentukan, maka akan dibuat data objek secara \textit{random} atau mengambil salah satu data pada \textit{data set} yang disebut sebagai \textit{centroid}. \textit{Centroid} merupakan nilai tengah yang merepresentasikan tiap \textit{cluster}. Tiap data objek akan dihitung jaraknya dengan setiap \textit{centroid} yang diinisialisasikan. Data objek akan dimasukkan ke kelompok \textit{cluster} yang memiliki jarak terkecil dengan \textit{centroid}. Jarak data objek dengan centroid dapat dihitung dengan menggunakan \textit{euclidean distance}: 
+
+\begin{equation}
+	dist(X,Y) = \sqrt[]{\sum_{n}^{i=1}(xi-yi)^2}
+	\label{eqref:euclideandistance}
+\end{equation}
+
+Persamaan \eqref{eqref:euclideandistance} menghitung jarak antara 2 data objek. X adalah data objek pertama dan Y adalah data objek kedua. $\sum_{}^{}$ adalah melakukan iterasi dan penjumlahan setap atribut. Setiap atribut masing-masing data objek akan dikurang lalu dipangkatkan. Hasil perpangkatan selisih setiap atribut akan diakarpangkat dua sehingga menjadi jarak dari kedua data objek
+
+Langkah-langkah dalam melakukan \textit{k-Means clustering} adalah : 
+\begin{enumerate}
+\item Tentukan jumlah K (jumlah \textit{cluster} / kelompok)
+\item Untuk tiap \textit{cluster}, buat satu data objek sebagai titik tengah yang disebut sebagai \textit{centroid}. Inisialisasi \textit{centroid} dapat ditentukan dengan \textit{random} / mengambil salah satu titik dari \textit{data objek} 
+\item Untuk setiap data objek, hitung jarak menggunakan \textit{euclidean distance} dengan setiap \textit{centroid}. Data objek akan masuk ke kelompok yang memiliki \textit{centroid} dengan jarak terpendek
+\item Atur ulang posisi \textit{centroid} dengan menghitung rata-rata tiap atribut yang termasuk dalam \textit{cluster} 
+\item Ulangi tahap tiga sampai tiap data objek tidak mengalami perubahan dalam menetapkan \textit{cluster}
+\end{enumerate}
+
+Untuk mempermudah penjelasan, diberikan sebuah contoh perhitungan \textit{k-Means} untuk menetapkan kelompok data. Berikut adalah contoh \textit{data set} nilai 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Nama & UTS & ART & UAS \\ 
+\hline 
+Jonathan & 75 & 40 & 95 \\ 
+\hline 
+James & 90 & 95 & 100 \\ 
+\hline 
+Pedro & 55 & 90 & 75 \\ 
+\hline 
+Luna & 85 & 65 & 85 \\ 
+\hline 
+Harry & 85 & 80 & 80 \\ 
+\hline 
+Chloe & 55 & 50 & 51 \\ 
+\hline 
+\end{tabular} 
+\caption{dataset k-Means}
+\label{tab:datasetkmeans}
+\end{table}
+
+Tabel \ref{tab:datasetkmeans} memiliki informasi  / atribut berupa nilai UTS,ART dan UAS. K atau jumlah \textit{cluster} yang ditentukan adalah K=2. Titik awal \textit{centroid} yaitu c1 dan c2. \textit{Centroid}  ditentukan secara \textit{random} adalah :
+
+\begin{itemize}
+\item c1 : UTS(80) , ART(80),UAS(80)
+\item c2 : UAS(50) , ART(50), UAS(50)
+\end{itemize}
+\pagebreak
+Berikut adalah perhitungan tiap data objek dengan menggunakan \textit{euclidean distance} pada persamaan \eqref{eqref:euclideandistance} : 
+
+\begin{table}[ht]
+\centering
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline 
+Nama & UTS & ART & UAS & Dist(data(i),c1) & Dist(data(i),c2) & Kelompok \\ 
+\hline 
+Jonathan & 75 & 40 & 95 & $\sqrt{(75-80)^2+(40-80)^2+(95-80)^2} = 43.01$ &  $ \sqrt{(75-50)^2+(40-50)^2+(95-50)^2}= 53.44$ & c1 \\ 
+\hline 
+James & 90 & 95 & 100 &  $\sqrt{(90-80)^2+(95-80)^2+(100-80)^2} = 26.92$ & $ \sqrt{(90-50)^2+(95-50)^2+(100-50)^2}= 78.26$ & c1 \\ 
+\hline 
+Pedro & 55 & 90 & 75 & $\sqrt{(55-80)^2+(90-80)^2+(75-80)^2} = 27.38$ & $ \sqrt{(55-50)^2+(90-50)^2+(75-50)^2}= 47.43$  & c1 \\ 
+\hline 
+Luna & 85 & 65 & 85 &  $\sqrt{(85-80)^2+(65-80)^2+(85-80)^2} = 16.58$ & $ \sqrt{(85-50)^2+(65-50)^2+(85-50)^2}= 51.72$ & c1 \\ 
+\hline 
+Harry & 85 & 80 & 80 &  $\sqrt{(85-80)^2+(80-80)^2+(80-80)^2} = 5$ & $ \sqrt{(85-50)^2+(80-50)^2+(80-50)^2}= 55$ & c1 \\ 
+\hline 
+Chloe & 55 & 50 & 51 & $\sqrt{(55-80)^2+(50-80)^2+(51-80)^2} = 48.64$ &$ \sqrt{(55-50)^2+(50-50)^2+(51-50)^2}= 5.09$ & c2 \\ 
+\hline 
+\end{tabular}}
+\caption{perhitungan k-Means iterasi ke-1}
+\label{tab:kmeansiterasi1}
+\end{table} 
+
+Tabel \ref{tab:kmeansiterasi1} menunjukkan perhitungan iterasi pertama untuk mendapatkan kelompok tiap data objek. Selanjutnya titik \textit{centroid} diubah dengan menghitung rata-rata atribut tiap anggota kelompok
+pada Tabel \ref{tab:centroid1} :
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Nama & UTS & ART & UAS \\ 
+\hline 
+c1 & $(75+90+55+85+85)/5 =  78$ & $(40+95+90+65+80)/5 = 74$ & $(95+100+75+85+80)/5 = 87$ \\ 
+\hline 
+c2 & 55 & 50 & 51 \\ 
+\hline 
+\end{tabular} 
+\caption{perubahan centroid iterasi 2}
+\label{tab:centroid1}
+\end{table}
+
+Setelah \textit{centroid} sudah diatur ulang, maka perhitungan tiap data objek dengan \textit{centroid} yang baru adalah : 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline 
+Nama & UTS & ART & UAS & dist(c1) & dist(c2) & kelompok \\ 
+\hline 
+Jonathan & 75 & 40 & 95 & 35.05 & 49.35 & c1 \\ 
+\hline 
+James & 90 & 95 & 100 & 27.45 & 75.17 & c1 \\ 
+\hline 
+Pedro & 55 & 90 & 75 & 30.47 & 46.64 & c1 \\ 
+\hline 
+Luna & 85 & 65 & 85 & 11.57 & 51.39 & c1 \\ 
+\hline 
+Harry & 85 & 80 & 80 & 11.57 & 51.39 & c1 \\ 
+\hline 
+Chloe & 55 & 50 & 51 & 49 & 0 & c2 \\ 
+\hline 
+\end{tabular} 
+\caption{perhitungan k-Means iterasi ke-2}
+\label{tab:kmeansiterasi2}
+\end{table}
+Karena pada Tabel \ref{tab:kmeansiterasi2} tiap data objek tidak berpindah ke \textit{cluster} lain, sehingga algoritma \textit{k-Means} tidak perlu diulang kembali karena sudah konvergen.
+\paragraph{Agglomerative Nesting (AGNES)}
+\textit{Agglomerative clustering} adalah algoritma \textit{clustering} jenis \textit{hiearchical}. Algoritma ini merupakan metode \textit{bottom-up} yaitu setiap data objek sebagai masing-masing \textit{cluster}. Secara iteratif menghitung jarak tiap data objek. Dua data objek dengan jarak terkecil akan digabung menjadi sebuah \textit{cluster}. Proses ini diulangi sampai semua data objek tergabung menjadi satu \textit{cluster}. 
+
+Jarak tiap titik dapat dihitung menggunakan \textit{euclidean distance}. Berikut adalah rumus untuk menghitung \textit{euclidean distance} pada Persamaan \ref{eqref:euclideandistance} yaitu : 
+
+\begin{equation}
+	dist(X,Y) = \sqrt[]{\sum_{n}^{i=1}(xi-yi)^2}
+	\label{eqref:euclideandistance}
+\end{equation}
+\pagebreak
+Untuk mempermudah penjelasan, diberikan sebuah contoh perhitungan \textit{Agglomerative clustering} menggunakan \textit{data set} berisi nilai yaitu : 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Nama & UTS & ART & UAS \\ 
+\hline 
+Jonathan & 74 & 40 & 95 \\ 
+\hline 
+James & 90 & 95 & 100 \\ 
+\hline 
+Pedro & 55 & 90 & 75 \\ 
+\hline 
+Luna & 85 & 65 & 85 \\ 
+\hline 
+\end{tabular} 
+\caption{data set perhitungan agglomerative}
+\label{tab:datasetagglomerative}
+\end{table} 
+Tabel \ref{tab:datasetagglomerative} berisi komponen nilai tiap siswa yaitu UTS,ART dan UAS. Berikut adalah perhitungan jarak tiap data objek menggunakan \textit{euclidean distance}  yaitu : 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+& Jonathan & James & Pedro & Luna \\ 
+\hline 
+Jonathan & 0 &  &  &  \\ 
+\hline 
+James & $\sqrt{(75-90)^2 + (40-95)^2 + (95-100)^2} = 57.22$ & 0 &  &  \\ 
+\hline 
+Pedro & $\sqrt{(75-55)^2 + (40-90)^2 + (95-75)^2} = 57.44$ &  43.4 & 0 &  \\ 
+\hline 
+Luna & \cellcolor{yellow!25}  28.72 &  33.91 & 40.31 & 0 \\ 
+\hline 
+\end{tabular} 
+\caption{perhitungan euclidean distance iterasi pertama}
+\label{tab:agglomerativeiterasi1}
+\end{table}
+
+Tabel \ref{tab:agglomerativeiterasi1} berisi perhitungan jarak tiap data objek. Karena jarak Jonathan dan Luna paling kecil, maka akan dikelompokkan menjadi satu \textit{cluster} yang sama yaitu c1. Satu \textit{cluster} yang terdiri dari beberapa titik dapat dihitung berdasarkan rata-rata tiap atribut. Sehingga isi \textit{data set} menjadi : 
+
+
+
+\begin{table}[ht]
+\centering 
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Euclidean Distance} & Jonathan,Luna & James & Pedro \\ 
+\hline 
+Jonathan,Luna & $75+85/2 = 80 $ & $40+65/2 = 52.5$ & $95+85/2 = 85$ \\ 
+\hline 
+James & 90 & 95 & 100 \\ 
+\hline 
+Pedro & 55 & 80 & 75 \\ 
+\hline 
+\end{tabular} 
+\caption{perubahan nilai cluster iterasi 1}
+\label{tab:perubahandatasetagglo1}
+\end{table}
+
+Tabel \ref{tab:perubahandatasetagglo1} menunjukkan perubahan titik tengah \textit{cluster} berasal dari rata-rata atribut Jonathan dan Luna. Iterasi selanjutnya akan menghitung jarak antara tiap titik untuk mencari jarak terpendek yaitu : 
+\pagebreak
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Euclidean Distance} & Jonathan,Luna (c1) & James & Pedro \\ 
+\hline 
+Jonathan,Luna (c1) & 0 & & \\ 
+\hline 
+James & 44.79 & 0 &  \\ 
+\hline 
+Pedro & \cellcolor{yellow!25} 40.07 & 45.55 & 0 \\ 
+\hline 
+\end{tabular} 
+\caption{perhitungan euclidean distance iterasi kedua }
+\label{tab:agglomerativeiterasi2}
+\end{table}
+
+Tabel \ref{tab:agglomerativeiterasi2} menunjukkan bahwa jarak antara c1 (Jonathan,Luna) dan Pedro memiliki jarak terpendek sehingga dikelompokkan menjadi satu \textit{cluster}. Setelah Pedro digabungkan dengan c1 menjadi c2, maka titik tengah dari c2 (Jonathan,Luna,Pedro) adalah : 
+
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+ & UTS & ART & UAS \\ 
+\hline 
+c2 (Jonathan,Luna, Pedro) & $(80+55)/2 = 67.5$ & $(52.55+80)/2 = 66.25$ & $(90+75)/2 = 82.5$ \\ 
+\hline 
+James & 90 & 95 & 100 \\ 
+\hline 
+\end{tabular} 
+\caption{perubahan nilai cluster iterasi 2}
+\label{tab:perubahandatasetagglo2}
+\end{table} 
+
+Tabel \ref{tab:perubahandatasetagglo2} menunjukkan bahwa tinggal terdapat 2 data objek yaitu \textit{cluster}
+c2 dan James. Kedua data objek dapat digabung langsung tanpa harus menghitung jarak menjadi c3 (Jonathan, James ,Pedro, Luna). Visualisasi menggunakan dendogram mengenai proses \textit{agglomerative clustering} yaitu : 
+
+
+\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.7]{dendogramcontoh}   
+	
+	\label{ref:dendogramcontoh} 	
+	\caption{Dendogram example}
+\end{figure} 
+
+
+
+
+
+%		RKS : VISUALISASI DATA
+		\item \textbf{Melakukan studi literatur mengenai teori dan implementasi visualisasi data seperti \textit{historgram,scatter plot, box plot} untuk membantu mengetahui sifat data yang dikumpulkan menggunakan \textit{matplotlib}} \\
+		{\bf Status:} Ada sejak rencana kerja skripsi \\
+		{\bf Hasil:} \\
+		\subsection{Data Visualization} 
+Visualisasi data adalah suatu metode untuk merepresentasikan data. Visualisasi data menggunakan dengan jumlah yang banyak untuk ditampilkan secara grafis. Visualisasi data akan membantu \textit{user} untuk membaca data lebih mudah. Dengan visualisasi, maka kita juga akan mendapatkan informasi mengenai hubungan antara data. Visualisasi data akan membantu meringkaskan data dan memberikan pengetahuan baru. 
+		
+Penggunaan visualisasi data dapat digunakan pada saat \textit{data preprocessing} maupun setelahnya. Pada tahap \textit{data preprocessing}, visualisasi data dapat dimanfaatkan untuk membantu proses memeriksa data untuk memastikan kebersihannya. Visualisasi data tidak hanya dilakukan sekali tetapi membutuhkan beberapa kali visualisasi untuk membantu menganalisis tren dari perubahan data itu sendiri. 
+		
+ Visualisasi data dapat dibedakan berdasarkan tipe data yang dianalisis, jumlah atribut yang digunakan, dan bentuk data yang dibutuhkan. Terdapat beberapa teknik yang dilakukan untuk melakukan visualisasi data yaitu \textit{Box plot}, \textit{Histogram}, \textit{Scatter plot} dan \textit{Pie chart} \\
+\subsubsection{\textbf{Boxplot}}.
+			
+\textit{Boxplot} adalah teknik \textit{data visualization} yang dapat digunakan untuk menampilkan persebaran nilai satu atribut.Masukan data dari grafik ini adalah kumpulan atribut numerik. Teknik ini dapat membantu memberikan informasi mengenai nilai-nilai yang dapat digunakan untuk analisis data. Pada umumnya, suatu \textit{Boxplot} akan menampilkan rata-rata(\textit{mean}), median (Q2), nilai maksimum , nilai minimum, kuartil bawah(Q1)dan kuartil atas(Q3). Berikut adalah  contoh \textit{box plot} yang dihasilkan berdasarkan \textit{dataset} iris pada kolom \textit{sepal length} yaitu :
+			
+\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.7]{boxplot}   
+	\caption{\textit{ boxplot dataset iris}}
+	\label{fig:boxplot} 
+\end{figure} 
+ Gambar \ref{fig:boxplot} menunjukkan kesimpulan informasi dari persebaran \textit{dataset} iris pada kolom \textit{sepal length}. Berikut adalah deskripsi dari tiap huruf : 
+	 	
+	 	
+	 	\begin{itemize}
+	 	\item \textbf{(a)} nilai maksimum 
+	 	\item \textbf{(b)} kuartil atas (Q3) 
+	 	\item \textbf{(c)} median (Q2) 
+	 	\item \textbf{(d)} kuartil bawah (Q1)
+	 	\item \textbf{(e)} nilai minimum 
+	 	\end{itemize}
+\pagebreak 	
+	 	\subsubsection{\textbf{Histogram}} 
+ \textit{Histogram} adalah teknik \textit{data visualization} yang digunakan untuk melihat persebaran data suatu atribut. Masukan dari  Data yang ditampilkan akan dibagi dalam sebuah \textit{bin} / interval kelas. Teknik ini akan mengelompokkan jumlah \textit{data object} berdasarkan nilai interval yang ditentukan dan sudah terurut. Berikut adalah contoh \textit{histogram} dari \textit{dataset iris sepal width} yaitu :
+	 	
+	 	   	
+			\begin{figure}[h!]
+	\centering  
+	\includegraphics[scale=0.7]{histogramiris}   
+	\caption{\textit{ histogram dataset iris}}
+	\label{fig:histogram} 
+\end{figure} 
+	
+	
+ Histogram yang ditampilkan pada gambar diatas adalah berdasarkan \textit{dataset iris}. Berdasarkan gambar \ref{fig:histogram}, histogram satu variabel akan menunjukkan grafik dengan koordinat 2 dimensi yaitu koordinat x dan y. Nilai pada koordinat x menunjukkan tiap interval kelas. Nilai pada koordinat y menunjukkan frekuensi tiap interval data. Tiap batang pada histogram menampilkan tiap interval kelas. Tinggi batang menunjukkan frekuensi pada tiap kelas.
+		
+ Pada contoh gambar \ref{fig:histogram}, terdapat 10 \textit{bins} yang masing-masingnya memiliki rentang sekitar nilai 0,25. Pada \textit{bin} pertama, terdapat jarak nilai dari 2.0 sampai kurang lebih 2,25. Aturan juga diterapkan pada \textit{bin} 2 sampai 10 yaitu menyerupai  \textit{bin} pertama. \\ 
+		\subsubsection{\textbf{Scatter Plot}} 
+		
+ \textit{Scatter plot} adalah teknik \textit{data visualization} yang dapat digunakan untuk melihat korelasi / keterhubungan antara 2 variabel data. \textit{Scatter plot} akan menggambarkan atribut prediktor (sebab) pada koordinat X dan menggambarkan atribut respon (akibat) pada koordinat Y. Hasil \textit{scatter plot} akan memberi penjelasan apakah atribut prediktor memiliki hubungan dengan atribut respon.Terdapat beberapa jenis \textit{Scatter plot} berdasarkan hasil korelasinya. Terdapat \textit{Scatter plot} yang memiliki korelasi positif, korelasi negatif dan tidak memiliki korelasi. Berikut adalah contoh gambar \textit{scatter plot} yaitu
+ 
+\pagebreak
+		\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterplotcorrelation}   
+		\caption{\textit{scatter plot dengan korelasi positif (a) dan negatif (b)}}
+		\label{fig:scatterplotcorrelation} 
+	\end{figure} 
+	
+	\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterplotwithoutcorrelation}   
+		\caption{\textit{scatter plot dengan tidak ada korelasi }}
+		\label{fig:scatterplotwithoutcorrelation} 
+	\end{figure} 
+	
+Berdasarkan Gambar \ref{fig:scatterplotcorrelation}, \textit{scatter plot} dengan korelasi terbentuk jika perubahan atribut pada koordinat X memengaruhi koordinat Y. Korelasi positif terjadi ketika semakin meningkatnya nilai pada koordinat X, maka koordinat Y akan meningkat juga. Korelasi negatif terjadi ketika perubahan koordinat X akan membuat nilai pada koordinat Y berubah berbanding terbalik. Gambar \ref{fig:scatterplotwithoutcorrelation} menggambarkan atribut koordinat X dan koordinat Y tidak memiliki korelasi.  
+\subsubsection{\textbf{Pie Chart}}
+\textbf{\textit{Pie Chart}} adalah teknik \textit{data visualization} untuk melihat frekuensi persebaran \textit{categorial data}. \textit{Pie chart} menggunakan bentuk lingkaran sebagai keseluruhan semua kumpulan data. Masing-masing potongan bagian pada \textit{pie chart} merupakan presentase banyak masing-masing nilai kategori. Berikut adalah gambaran \textit{pie chart} menggunakan \textit{dataset iris}. 
+\pagebreak	
+	\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{piechart}   
+		\caption{\textit{Pie Chart iris Species }}
+		\label{fig:piechart} 
+	\end{figure}
+	
+Berdasarkan Gambar \ref{fig:piechart}, data yang digunakan untuk divisualisasikan adalah \textit atribut {species dataset iris}. Pada \textit{dataset} terdapat atribut \textit{species} yang memiliki kemungkinan nilai yaitu \textit{setosa , virginica, versicolor}. Tiap warna pada \textit{pie chart} merepresentasikan masing-masing kategori \textit{species}. Jumlah data pada atribut \textit{species} adalah 150, jumlah masing-masing \textit{species} adalah 50 sehingga presentasenya sama.
+
+%		RKS POIN MEMPELAJARI 
+		\item \textbf{\item Mempelajari bahasa pemrograman \textit{Python} dan beberapa \textit{library} dari \textit{Python}  seperti \textit{Pandas},\textit{Sci-Kit learn} dan \textit{matplotlib}.}\\
+		{\bf Status :} Ada sejak rencana kerja skripsi.\\
+		{\bf Hasil : } 	
+		
+		Analisis terhadap data \textit{film} dilakukan untuk memahami faktor-faktor yang relevan untuk melakukan prediksi \textit{revenue} / keuntungan \textit{film}. Sesuai dengan referensi dari artikel \textit{kaggle} dan latar belakang ingin menganalisis data film untuk mencari faktor-faktor yang membuat film sukses.Akan dilakukan eksperimen sederhana untuk mempelajari data \textit{film} dan mencoba memprediksi keuntungan \textit{film} menggunakan \textit{linear regression}. 
+		
+		\textit{Data set} yang digunakan berasal dari situs \textit{Kaggle.com}. Berikut adalah deskripsi \textit{data set} yang digunakan. Berikut adalah deskripsi dari \textit{data set} : 
+		\begin{enumerate}
+		\item nama data set : \textbf{IMDB-Movie-Data.csv}
+		\item sumber : \textbf{kaggle}
+		\item row : \textbf{1000}
+		\item column : 12
+		\item Rank              	:1000 non-null int64
+		\item Title                 	:1000 non-null object
+		\item Genre                 	:1000 non-null object
+		\item Description          	: 1000 non-null object
+		\item Director              	:1000 non-null object
+		\item Actors                	:1000 non-null object
+		\item Year                  	:1000 non-null int64
+		\item Runtime (Minutes)   :1000 non-null int64
+		\item Rating                	:1000 non-null float64
+		\item Votes                	:1000 non-null int64
+		\item Revenue (Millions)   :872 non-null float64
+		\item Metascore             	:936 non-null float64
+		\item dtypes: float64(3), int64(4), object(5)
+		\end{enumerate}
+		
+Pada eksperimen kali ini saya menggunakan\textit{ data set} yang relatif kecil sebagai latihan untuk membiasakan dalam penggunaan \textit{python} dan \textit{dataframe}. Hal yang pertama saya lakukan adalah mengimport data menggunakan fungsi readcsv .Dataset saya peroleh dari situs Kaggle.Setelah saya berhasil melakukan readcsv,saya memanggil fungsi head() untuk melihat 5 data pertama. Berikut adalah Gambar \ref{fig:datasethead} berisi pemanggilan fungsi head().
+ 		
+\begin{figure}[h!]
+		\centering  
+		\includegraphics{datasethead}   
+		\caption{\textit{5 data pertama}}
+		\label{fig:datasethead} 
+	\end{figure}
+
+
+Pada tahap \textit{pre processing} kali ini saya melakukan \textit{data cleaning} dengan mengidentifikasi apakah ada \textit{null} values dari dataset yang digunakan dengan menggunakan fungsi dropna(), yaitu akan membuang row jika terdapat suatu kolom yang memiliki value nan. Setelah di drop, jumlah \textit{row} pada dataset adalah 838. Berikut adalah hasil visualisasi jumlah masing masing kolom yang memiliki \textit{null} values menggunakan \textit{barchart} pada Gambar \ref{fig:barchartnullvalues}. 
+
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{barchart-nullvalues}   
+		\caption{\textit{jumlah null values tiap atribut}}
+		\label{fig:barchartnullvalues} 
+\end{figure}
+\pagebreak
+Kolom \textit{genre} pada \textit{data set} ini berisi beberapa \textit{genre} yang di \textit{concat} menggunakan  koma, sehingga saya melakukan perubahan kolom dengan membagi menjadi 1 row 1 genre. Berikut adalah kumpulan genre yang tersedia pada dataset yang digunakan menggunakan wordcloud untuk melihat seberapa banyak masing-masing \textit{genre}. 
+
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{wordcloud-genre}   
+		\caption{\textit{Wordcloud bobot genre}}
+		\label{fig:wordcloudgenre} 
+\end{figure}
+
+Tahap selanjutnya adalah saya melakukan visualisasi data menggunakan \textit{scatter plot} untuk melihat relevansi numerik variabel antara prediktor(metascore , rating , runtime , votes , year) dan respons  / yang ingin diprediksi(revenue). Berikut adalah Gambar \ref{fig:scatterp-metascore-revenue} , \ref{fig:scatterp-rating-revenue} , \ref{fig:scatterp-runtime-revenue} , \ref{fig:scatterp-votes-revenue}  dan \ref{fig:scatterp-YEAR-revenue}.
+
+   
+ \begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterp-METASCORE-REVENUE}   
+		\caption{\textit{scatter plot metascore dengan revenue}}
+		\label{fig:scatterp-metascore-revenue} 
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterp-RATING-REVENUE}   
+		\caption{\textit{scatter plot rating dengan revenue}}
+		\label{fig:scatterp-rating-revenue} 
+\end{figure}
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterp-runtime-REVENUE}   
+		\caption{\textit{scatter plot runtime dengan revenue}}
+		\label{fig:scatterp-runtime-revenue} 
+\end{figure}
+\pagebreak
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterp-VOTES-REVENUE}   
+		\caption{\textit{scatter plot votes dengan revenue}}
+		\label{fig:scatterp-votes-revenue} 
+\end{figure}
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.7]{scatterp-YEAR-REVENUE}   
+		\caption{\textit{scatter plot year dengan revenue}}
+		\label{fig:scatterp-YEAR-revenue} 
+\end{figure}
+Untuk memilih atribut prediktor untuk memprediksi \textit{revenue}.Atribut \textit{votes} dipilih sebagai prediktor untuk percobaan memprediksi \textit{revenue}. Menggunakan Persamaan \textit{linear regression}, ditemukan koefisien dan konstanta nya menggunakan fungsi fit pada \textit{sci kit learn} yaitu pada persamaan \ref{eqref:persamaanprediksi} :  
+\begin{equation}
+Y = (0.00036) X +  15.09
+\label{eqref:persamaanprediksi}
+\end{equation}
+Berikut adalah visualisasi \textit{linear regression} berupa kurva linear menggunakan \textit{library matplotlib} yaitu : 
+
+\pagebreak
+\begin{figure}[h!]
+		\centering  
+		\includegraphics[scale=0.9]{linearregressionplot}   
+		\caption{\textit{Kurva linear regresi untuk memprediksi revenue}}
+		\label{linearregressionplot} 
+\end{figure}
+
+Untuk menguji model yang dibuat, dilakukan perhitungan nilai RMSE untuk menghitung nilai \textit{error} dari prediksi yang dibuat yaitu 70,71. $R^2$ dihitung untuk menguji berdasarkan presentase kebenaran prediksi yaitu sekitar 0.39 atau 39 persen. Kesimpulan yang dapat diambil adalah penggunaan fitur \textit{votes} untuk memprediksi \textit{revenue} memiliki akurasi yang belum terlalu tinggi. Dengan melakukan eksperimen dengan mengombinasikan atribut lain dan menggunakan algoritma \textit{machine learning} yang lain, maka akan diuji apakah terdapat faktor-faktor yang dapat membuat film lebih sukses.
+
+\textbf{\item Mencari sumber data yang relevan untuk melakukan pengumpulan data dari situs \textit{review} film dan media sosial }\\
+		{\bf Status :} Ada sejak rencana kerja skripsi.\\
+		{\bf Hasil : } 
+		Untuk melakukan pengambilan data media sosial, sudah dilakukan survei untuk mencari API untuk mengakses data media sosial seperti \textit{twitter} yang bernama python-twitter.\textit{dataset} \textit{Kaggle} juga dapat digunakan media untuk mencari data media sosial yang akan digabung dengan data \textit{film}
+
+
+\end{enumerate}
+ 
+ 
+ 
+  
+		  
+		
 \section{Pencapaian Rencana Kerja}
 Langkah-langkah kerja yang berhasil diselesaikan dalam Skripsi 1 ini adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+	\item Melakukan studi literatur dengan mencari jurnal, \textit{paper} mengenai penelitian sejenis dari berbagai sumber untuk membantu penulis dalam menulis  
+	\item Melakukan studi literatur mengenai ilmu statistika dasar khususnya dalam memahami persebaran data 
+		\item Melakukan studi literatur mengenai proses \textit{data mining}  
+		\item Melakukan studi literatur mengenai metode metode \textit{machine learning} yaitu \textit{clustering} dan \textit{classification} yang relevan 
+		\item Melakukan studi literatur mengenai teori dan implementasi visualisasi data seperti \textit{histogram,scatter plot, box plot} untuk membantu mengetahui sifat data yang dikumpulkan menggunakan \textit{matplotlib} 
+		\item Melakukan penelitian sejenis mengenai industri perfilman untuk mengetahui relevansi antar faktor yang ada  
+		\item Mempelajari bahasa pemrograman \textit{Python} dan beberapa \textit{library} dari \textit{Python}  seperti \textit{Pandas},\textit{Sci-Kit learn} dan \textit{matplotlib} 
+		\item Mencari sumber data yang relevan untuk melakukan pengumpulan data dari situs \textit{review} film dan media sosial 
 \end{enumerate}
 
 
@@ -131,9 +1350,8 @@ Langkah-langkah kerja yang berhasil diselesaikan dalam Skripsi 1 ini adalah seba
 Kendala - kendala yang dihadapi selama mengerjakan skripsi :
 \begin{itemize}
 	\item Terlalu banyak melakukan prokratinasi
-	\item Terlalu banyak godaan berupa hiburan (game, film, dll)
-	\item Skripsi diambil bersamaan dengan kuliah ASD karena selama 5 semester pertama kuliah tersebut sangat dihindari dan tidak diambil, dan selama 4 semester terakhir kuliah tersebut selalu mendapat nilai E
-	\item Mengalami kesulitan pada saat sudah mulai membuat program komputer karena selama ini selalu dibantu teman
+	\item Terlalu banyak mengambil mata kuliah lain yang tingkat kesulitan tinggi karena ada tugas besar
+	\item Mengalami kesulitan pada saat melakukan eksperimen
 \end{itemize}
 
 \vspace{1cm}

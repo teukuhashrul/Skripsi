@@ -5,40 +5,84 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Bagian ini akan diisi dengan apa yang melatarbelakangi pembuatan template skripsi ini.
-Termasuk juga masalah-masalah yang akan dihadapi untuk membuatnya, termasuk kurangnya kemampuan penguasaan \LaTeX{} sehingga template ini dibuat dengan mengandalkan berbagai contoh yang tersebar di dunia maya, yang digabung-gabung menjadi satu jua.
-Bagian lain juga akan dilengkapi, untuk sementara diisi dengan lorem ipsum versi bahasa inggris.
+Film merupakan media komunikasi yang bersifat audio visual untuk menyampaikan suatu pesan kepada penontonnya. Keberadaan film membuat masyarakat menjadikan film sebagai media hiburan. Beragam cara dapat dilakukan untuk menikmati sebuah film, yaitu datang ke bioskop, membeli kaset DVD dan \textit{streaming} menggunakan aplikasi \textit{desktop} dan \textit{smartphone}.
 
-\dtext{5-10}
+Film yang dibuat ada karena ada kumpulan orang dibalik layar yang bekerja untuk membuatnya. Terdapat beragam perusahaan produksi film yang berlomba-lomba untuk membuat film yang dapat memperoleh keuntungan maksimum. Dengan menciptakan film yang sesuai dengan keinginan penontonnya,maka peluang keuntungan yang diperoleh pun akan semakin meningkat dan dapat menutup\textit{budget} yang digunakan sebelumnya untuk biaya produksi.
+	
+Berdasarkan penelitian analisis data film yang ada sebelumnya pada \textit{kaggle}, data film memiliki beberapa atribut umum yaitu judul,\textit{genre}, \textit{rating}, keuntungan,\textit{ budget}, nilai \textit{review} dari situs internet, aktor yang terlibat dan lama tayang. Data film yang ada digunakan untuk membantu menganalisis sifat dari film. Penelitian yang dilakukan adalah analisis prediksi nilai IMDB \textit{score}, yaitu situs yang berisi data film. 	
+	
+
+\textit{Genre} adalah sebutan untuk membedakan berbagai jenis film. Sebuah film memiliki satu atau beragam \textit{genre}. Terdapat banyak film yang menggunakan kombinasi dari beberapa \textit{genre}.  \textit{Genre} yang ada berupa \textit{action, adventure, animation ,drama ,comedy ,horror ,romance} dan lain-lain. 
+
+Terdapat banyak kemungkinan faktor yang dapat dijadikan sebuah film dapat memperoleh keuntungan maksimum. Faktor kesuksesan film berupa faktor \textit{rating} dari situs \textit{review} film, nama aktor yang terlibat, nama sutradara yang terlibat dan jumlah \textit{budget} yang dikeluarkan. Salah satu faktor dan kombinasi beberapa faktor dapat memengaruhi kesuksesan film.
+	
+Berdasarkan uraian diatas,akan dilakukan sebuah penelitian mengenai data film. Penelitian ini adalah analisis kesuksesan film dengan \textit{data mining} untuk memperoleh faktor-faktor yang ada dapat memprediksi  kesuksesan sebuah film. Dari faktor yang diperoleh, maka akan diprediksi \textit{revenue}/pendapatan sebuah film berdasarkan data film yang sudah ada sebelumnya. 
+	
+Pada penelitian ini dibuat sekumpulan perangkat lunak yang digunakan untuk mengumpulkan, membersihkan data, analisis ,pembuatan model, evaluasi kerja model dan visualisasi data.Perangkat lunak yang dibuat akan membantu menganalisis data film yang digunakan. Pembuatan perangkat lunak akan menggunakan bahasa pemrograman \textit{Python} dan memanfaatkan beberapa \textit{library} dari \textit{Python}.\textit{Pandas} digunakan untuk integrasi data. \textit{Sci-kit learn} digunakan untuk implementasi regresi, teknik \textit{clustering} dan \textit{classification} untuk memprediksi keuntungan sebuah film. Penelitian ini akan melakukan eksperimen untuk membandingkan beberapa metode \textit{machine learning} dalam memprediksi kesuksesan sebuah film.
+
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
-Bagian ini akan diisi dengan penajaman dari masalah-masalah yang sudah diidentifikasi di bagian sebelumnya. 
+Berkaitan dengan identifikasi masalah yang ada pada deskripsi diatas, masalah-masalah yang ada dapat dirumuskan sebagai berikut. 
 
-\dtext{6}
+\begin{itemize}
+\item Apa saja faktor yang dapat digunakan untuk menentukan kesuksesan sebuah film ?
+\item Bagaimana langkah dalam melakukan analisis kesuksesan film dengan \textit{data mining} ? 
+\item Bagaimana hasil pengujian pada penelitian ini ?
+\end{itemize}
+
 
 \section{Tujuan}
 \label{sec:tujuan}
-Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
+Tujuan yang ingin dicapai dari penelitian ini adalah:  
 
-\dtext{7}
+\begin{itemize}
+\item Mengeksplorasi data yang dikumpulkan
+\item Membuat perangkat lunak yang dapat menggunakan metode \textit{data mining} untuk melakukan analisis faktor-faktor yang dapat berpengaruh pada kesuksesan film
+\item Menguji metode-metode yang digunakan pada penelitian ini
+\end{itemize} 
 
 \section{Batasan Masalah}
-\label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
+\label{sec:batasan} 
+Pelaksanaan penelitian ini permasalahannya dibatasi pada: 
 
-\dtext{8}
+\begin{enumerate}
+\item Dataset yang digunakan pada penelitian berasal dari situs penyedia dataset seperti \textit{Kaggle}
+\item Data yang digunakan merupakan data IMDB dari tahun 2006 sampai 2016
+\item Penelitian ini akan membuat mengimplementasikan tahapan \textit{data mining} dengan memanfaatkan \textit{library} dari \textit{Python}
+\item Penelitian ini tidak membuat antarmuka perangkat lunak dalam memrediksi kesuksesan film sehingga penjabaran dalam penelitian ini menggunakan visualisasi data dan nilai ketepatan
+
+\end{enumerate}
+
+
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
-
-\dtext{9}
+Langkah-langkah yang akan dilakukan dalam melakukan penelitian ini, yaitu: 
+\begin{enumerate}
+\item Melakukan studi literatur dengan mencari jurnal, \textit{paper} mengenai penelitian sejenis dari berbagai sumber untuk membantu penulis dalam menulis 
+\item Melakukan studi literatur langkah-langkah teknik \textit{data mining} untuk memahami konsep
+\item Melakukan studi literatur mengenai metode-metode \textit{machine learning} yaitu regresi, \textit{clustering} dan \textit{classification} yang relevan
+\item Melakukan studi literatur mengenai teori dan implementasi visualisasi data seperti \textit{historgram,scatter plot, box plot} untuk membantu mengetahui sifat data yang dikumpulkan menggunakan \textit{matplotlib}
+\item Melakukan penelitian sejenis mengenai industri perfilman untuk mengetahui relevansi antar faktor yang ada 
+\item Mempelajari bahasa pemrograman \textit{Python} dan beberapa \textit{library} dari \textit{Python}  seperti \textit{Pandas},\textit{Sci-Kit learn} dan \textit{matplotlib}
+\item Mencari sumber data yang relevan untuk melakukan pengumpulan data dari situs \textit{review} film dan media sosial
+\item Melakukan integrasi data dari sumber yang digunakan
+\item Melakukan eksplorasi untuk menemukan sifat data
+\item Melakukan analisis data secara statistik  dengan teknik visualisasi data 
+\item Menerapkan metode-metode \textit{machine learning} regresi, \textit{clustering} dan \textit{classification}
+\item Melakukan pengujian dan eksperimen  
+\item Menulis dokumen skripsi
+\end{enumerate}
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
+Sistematika penulisan ini berguna untuk memberikan gambaran secara umum mengenai penelitian
+yang akan dibuat. Berikut ini adalah uraian dari sistematika pembahasan:  
 
-\dtext{10}
+\begin{itemize}
+\item Bab 1. Pendahuluan, membahas tentang latar belakang, rumusan masalah, tujuan penelitian, batasan masalah, metode penelitian dan sistematika pembahasan mengenai skripsi
+
+\item Bab 2. Dasar Teori, membahas pengertian \textit{data mining}, langkah-langkah \textit{data mining}, algoritma \textit{Machine Learning}
+\end{itemize}
+
