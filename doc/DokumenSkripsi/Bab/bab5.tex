@@ -1,0 +1,46 @@
+\chapter{KESIMPULAN DAN SARAN}
+\label{chap:kesimpulan}
+
+Bab ini akan membahas kesimpulan yang didapat dari hasil penelitian ini dan saran yang dapat diberikan untuk pengembangan penelitian ini lebih lanjut.
+
+\section{Kesimpulan}
+Kesimpulan yang dihasilkan dari penelitian menggunakan \textit{dataset} yang digunakan adalah : 
+
+\begin{itemize}
+\item Faktor yang paling berpengaruh dalam menentukan kesuksesan film berdasarkan \textit{dataset} yang digunakan antara lain adalah \textit{votes}, \textit{budget} dan jumlah \textit{view trailer} Youtube. Evaluasi akurasi prediksi \textit{revenue} menggunakan R2 dapat mencapai 0.63 berdasarkan penggunaan fitur tersebut. \textit{Votes}, \textit{Budget} dan Youtube adalah 3 fitur yang memiliki korelasi tertinggi dengan \textit{revenue} dibanding fitur lain berdasarkan pengujian \textit{pearson}.
+
+\item Berdasarkan \textit{dataset} yang dianalisis, selera penonton berbeda dengan selera kritikus \textit{review} dalam menilai bagus tidaknya sebuah film. Selera penonton (\textit{votes}) memiliki hubungan korelasi positif dengan \textit{revenue} yang lebih tinggi yaitu 0.6 . Nilai korelasi \textit{pearson} \textit{votes} memiliki nilai yang lebih tinggi dibanding selera kritikus (\textit{review}) yaitu 0.2. 
+
+\item Grafik tren nilai akumulasi \textit{revenue} , \textit{profit} dan \textit{budget} dari tahun ke tahun meningkat berdasarkan \textit{dataset} yang dianalisis. Pada tahun 2011, terjadi penurunan yaitu nilai akumulasi \textit{revenue} yang menurun dibanding tahun sebelumnya. Hal ini disebabkan oleh film-film tahun 2011 yang lebih banyak menghasilkan \textit{revenue} yang lebih kecil dari tahun 2010. Terjadi peningkatan jumlah film yang dibuat tiap tahunnya.
+
+
+\item Berdasarkan \textit{dataset} yang dianalisis, tiap kombinasi \textit{genre} film memiliki rentang pendapatan yang berbeda. Visualisasi distribusi \textit{revenue boxplot} tiap kombinasi \textit{genre} seperti contoh kombinasi \textit{Action,Adventure,Mystery} memiliki nilai Q2 yang lebih besar dari \textit{Action,Drama,Fantasy}. Pemilihan \textit{genre} pada pembuatan film mempengaruhi rentang \textit{revenue} yang dapat diperoleh.
+
+\item Berdasarkan \textit{dataset} yang dianalisis, \textit{budget} yang besar tidak menjamin \textit{profit} yang diperoleh akan besar. Visualisasi \textit{barchart} perbandingan 10 \textit{profit} tertinggi pada tiap kombinasi \textit{genre}  menunjukkan film dengan kombinasi \textit{genre} \textit{Horror,Mystery,Thriller} memiliki \textit{budget} yang sangat kecil tetapi mendapatkan keuntungan yang besar.  
+
+
+\item Tiap aktor memiliki \textit{genre} favorit. \textit{Genre} favorit aktor adalah \textit{genre} yang paling sering dimainkan seorang aktor dan memliki kontribusi jumlah film paling banyak. \textit{Genre} favorit aktor cenderung berkontribusi menghasilkan \textit{revenue} yang tinggi dibanding \textit{genre} lain berdasarkan pengujian \textit{clustering} aktor. 
+
+\item Algoritma \textit{Agglomerative} lebih cepat dibandingkan dengan algoritma \textit{K-Means} dalam melakukan \textit{clustering}. Berdasarkan pengujian \textit{clustering} pada \textit{dataset}, waktu yang dibutuhkan \textit{Agglomerative} adalah 9 detik sedangkan \textit{K-Means} adalah 752 detik. \textit{Agglomerative} lebih cepat dari \textit{K-Means} karena \textit{Agglomerative} tiap iterasinya akan menggabungkan 2 data objek dan mengurangi jumlah \textit{cluster} terpisah sedangkan \textit{K-Means} tiap iterasi akan menghitung jarak data objek dengan \textit{centroid}. 
+
+\item \textit{Hashtag} Instagram pada \textit{dataset} yang dianalisis tidak memiliki korelasi positif yang kuat dengan \textit{revenue}. \textit{Hashtag} Instagram mengandung kata-kata yang orang sering gunakan seperti 'Red' dan 'Vacation'. Hal ini menyebabkan data \textit{Hashtag} mengandung noise  
+
+\item Hubungan korelasi positif Youtube dengan \textit{Revenue} lebih tinggi dari Instagram berdasarkan pengujian korelasi dengan \textit{pearson}. Hal ini disebabkan oleh pengaruh kesalahan data \textit{hashtag} judul film di Instagram pada kesimpulan sebelumnya.
+
+\item Pengujian prediksi \textit{revenue} berdasarkan \textit{cluster}  menghasilkan nilai evaluasi akurasi R2 yang sangat kecil yaitu 0.23 . Hal ini disebabkan oleh jumlah data \textit{train} yang sangat sedikit setelah di\textit{cluster} sehingga model prediksi tidak valid untuk diuji.
+
+ 
+\end{itemize}
+
+
+\section{Saran}
+Saran yang dapat dilakukan untuk memperbaiki dan mengembangkan penelitian ini lebih lanjut : 
+
+
+\begin{itemize}
+\item Merubah metode prediksi dengan mengubah model regresi menjadi model klasifikasi. Film-film pada \textit{dataset} dapat dikelompokkan berdasarkan \textit{revenue} / \textit{profit}.  
+
+
+\item Menambah ukuran \textit{dataset} yang dianalisis. Penambahan jumlah film pada \textit{dataset} akan membantu mengatasi kendala ketika \textit{dataset} sudah di\textit{cluster} tidak mengalami kekurangan data \textit{train}.
+
+\end{itemize}

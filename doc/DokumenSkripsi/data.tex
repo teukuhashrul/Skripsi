@@ -76,7 +76,7 @@
 %\mode{bimbingan} 		% untuk keperluan bimbingan
 %\mode{sidang} 			% untuk sidang 1
 %\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
-%\mode{final} 			% untuk mencetak buku skripsi 
+\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -196,9 +196,9 @@
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
 %=============================================================================
 \namanpm{Teuku Hashrul}{2016730067}
-\tanggal{<<tanggal>>}{Mei}{2020}
+\tanggal{19}{Juni}{2020}
 \pembimbing{\KDH}{}    
-\penguji{<<penguji 1>>}{<<penguji 2>>} 
+\penguji{\CEN}{\LCA} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -227,8 +227,30 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+\abstrakINA{
+ Film merupakan media komunikasi yang bersifat audio visual untuk menyampaikan suatu pesan atau cerita kepada penontonnya dan dijadikan sebagai media hiburan. Film yang dibuat ada karena kumpulan orang dibalik layar. Perusahaan film berlomba-lomba untuk membuat film yang memperoleh keuntungan maksimum. Terdapat banyak kemungkinan faktor yang dapat dijadikan film dapat memperoleh keuntungan maksimum. Penelitian ini adalah analisis kesuksesan film dengan \textit{data mining} untuk memperoleh faktor-faktor yang dapat memprediksi kesuksesan sebuah film.  Penelitian ini merupakan eksperimen untuk membandingkan beberapa metode \textit{machine learning} seperti regresi dalam memprediksi kesuksesan sebuah film. Penelitian ini menggunakan bahasa pemrograman Python dan memanfaatkan beberapa \textit{library} untuk melakukan \textit{data mining}. 
+ 
+ 
+\textit{Data mining} adalah proses menemukan suatu pola dari kumpulan data yang besar. Dengan \textit{data mining}, manusia dapat menemukan sebuah informasi / pemahaman baru dari data. Kumpulan proses \textit{data mining} adalah \textit{Data cleaning} untuk menghilangkan \textit{noise} dan data yang tidak konsisten. \textit{Data integration} adalah proses menggabungkan data dari beberapa sumber. \textit{Data transformation} adalah mengubah bentuk data menjadi lebih mudah dan relevan untuk kebutuhan analisis. \textit{Data Selection} adalah proses memilih data yang relevan untuk kebutuhan analisis. \textit{Data Mining} adalah tahap untuk menggunakan metode \textit{Machine Learning} untuk menemukan pola dari sebuah data. \textit{Pattern Evaluation} adalah tahap untuk memeriksa pola yang dihasilkan apakah menghasilkan kebenaran.
+
+Penelitian ini menghasilkan informasi berupa hasil visualisasi data dari \textit{dataset} film yang dianalisis. Perangkat lunak  membaca \textit{dataset} yang berupa data film dari tahun 2006 sampai 2016 lalu melakukan sekumpulan proses \textit{data mining} seperti membersihkan data dengan menghilangkan \textit{noise}, melakukan pengumpulan data tambahan media sosial seperti Youtube, melakukan integrasi data dengan menggabungkan \textit{dataset} dengan data tambahan, melakukan pemilihan fitur, melakukan prediksi keuntungan menggunakan fitur yang sudah dipilih sebelumnya dan melakukan evaluasi terhadap model prediksi yang dibuat. Selain itu, perangkat lunak  melakukan \textit{clustering} untuk mengelompokkan data film pada \textit{dataset} berdasarkan aktor dan \textit{genre}.
+
+Berdasarkan penelitian dan hasil evaluasi data yang dilakukan, dapat disimpulkan bahwa faktor yang dapat berpengaruh dalam kesuksesan film adalah jumlah penonton yang menyukai film tersebut (\textit{votes}), besar biaya yang dikeluarkan untuk membuat film (\textit{budget}) dan jumlah penonton \textit{trailer} film pada situs Youtube. Selain itu, dapat disimpulkan bahwa selera penonton (\textit{votes}) lebih berpengaruh
+ dalam memperoleh kesuksesan film dibanding dengan selera kritikus (\textit{review}).}
+
+
+\abstrakENG{
+Movie is an audio visual media to communicate and deliver some story to its viewer. People tend to watch movie as an entertainment purpose. There are movie makers in movie production house who wants to make their movies gain maximum profit. There are many possible factor that affects movie to gain maximum profit. This research is about movie profit analysis using data mining to acquire insights about movie industry and factor that will be used as a predictor to predict profit of a movie. There are several programs that will be made to collect, clean, select, analyze and evaluate movie data. This research also will do experiment to compare Machine Learning techniques such as regression to predict profit of a movie. This research will use Python as a programming language and several libraries to help develop Data Mining script.
+
+Data Mining is a process of discovering interesting patterns and knowledge from large amounts of data. Data mining can help human to obtain new knowledge and information from data. There are several 
+process in data mining such as data cleaning to remove noise data. Data integration is a process to combine data from multiple sources. Data transformation is a process to transform data to become more readable and more relevant for analysis. Data selection is a process to choose feature that correlates and more relevant to the model. Data mining is a process to use Machine Learning methods to find interesting patterns from a data. Pattern evaluation is a process to validate the Machine Learning model. 
+
+This research will produce interesting insights and data visualization from the choosen dataset. the program will read the dataset of a popular movie from 2006 to 2016. This research also will implementing data mining process such as remove noise from dataset, collect additional social media data features such as Youtube, integrate the additional data and the original dataset, select the most relevant data feature, do some predictive analysis to predict movie profit and evaluate the model. This dataset also will be clustered by actor and genre that similar.
+
+According to the research and the data analysis that has been done, it could be concluded that the most important factor to increase the possibility to gain maximum profit from a movie are how many viewer that liked the movie (votes), how much the production cost (budget) and how many movie trailer views  gained in Youtube. This research also conclude that how many viewer that liked the movie (votes) is more important factor that acquiring a good grade from professional reviewer.
+
+
+} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -240,8 +262,8 @@
 % - kunciENG: keywords in english
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{\textit{Data Mining} , \textit{Machine Learning}, Regresi,\textit{Clustering}, \textit{Dataset}}
+\kunciENG{Data Mining, Machine Learning, Regression, Clustering, Dataset}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -251,7 +273,7 @@
 % Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
+\untuk{Skripsi ini saya persembahkan kepada ibunda dan almarhum ayahanda \ldots}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -262,7 +284,19 @@
 % kasih kepada yang telah membantu anda bla bla bla ....  
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\prakata{<<Tuliskan kata pengantar dari anda di sini \ldots>>} 
+\prakata{Puji dan syukur penulis panjatkan ke hadirat Tuhan yang Maha Esa karena atas berkat dan rahmat-Nya penulis berhasil menyelesaikan penyusunan skripsi ini yang berjudul "Analisis Kesuksesan Film Menggunakan Dengan Data Mining". Penulis menyadari bahwa penyusunan skripsi ini tidak akan berhasil tanpa dukungan doa dari berbagai pihak, oleh karena itu penulis ingin mengucapkan terima kasih kepada:
+
+\begin{itemize}
+\item Orang tua penulis yang telah bekerja keras mendoakan, mendukung dan memenuhi kebutuhan penulis selama proses penyusunan skripsi. 
+\item Kedua kakak penulis yang selalu mendoakan dan mendukung penulis.
+\item Paman dan Tante yang selalu mendorong penulis untuk berkembang dan belajar.
+\item Bapak \KDH yang telah memberikan bimbingan dan arahan selama proses penyusunan skripsi.
+\item Sahabat semasa kuliah Giovanni, Timothy, Rashif, Naofal, Alif dan Shafira
+\item Sahabat semasa SMA Evander, Dewi, Reky, Cory, Annissa, Gintar dan Agung.
+\item Teman-teman Himpunan Mahasiswa Program Studi Teknik Informatika (HMPSTIF) sebagai tempat pengembangan diri. 
+\end{itemize} 
+
+Penulis berharap semoga skripsi ini dapat berguna bagi segenap pihak yang berkepentingan. Akhir kata, penulis memohon maaf apabila terdapat kekurangan dalam hasil penyusunan skripsi ini.}
 %=============================================================================
 
 %_____________________________________________________________________________
